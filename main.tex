@@ -1,0 +1,404 @@
+%-----------------------------------------------------------------
+% Preamble
+%------------------------------------------------------------------
+\documentclass[12pt,a4paper,twoside,openright]{book}
+\usepackage{mathptmx} % times no roman-like font
+\usepackage[left=30mm, right=25mm, top=25mm, bottom=25mm]{geometry} % margins
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\baselinestretch}{1.15}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\def\blankpage{%
+      \clearpage%
+      \thispagestyle{empty}%
+      \null%
+      \clearpage}
+
+%-----------------------------------------------------------------
+% Packages
+%------------------------------------------------------------------
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter. #1 }}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\usepackage{titlesec}
+\fancyhf{}
+\fancyhead[RO]{\bfseries\rightmark}
+\fancyhead[LE]{\bfseries\leftmark}
+\setlength{\headheight}{15pt}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\headheight}{0.5pt}
+\fancypagestyle{plain}{
+  \fancyhead{}
+  \renewcommand{\headrulewidth}{0pt}
+}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[nottoc]{tocbibind}
+\usepackage[backend=biber,style=numeric-comp,maxcitenames=1,autocite=inline,natbib=true,sorting=none]{biblatex}
+\addbibresource{references.bib}
+\usepackage{indentfirst}
+\setlength{\parskip}{1em}
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+\usepackage{enumitem}
+\usepackage[font=footnotesize]{caption}
+\usepackage[toc,page]{appendix}
+\usepackage{pdfpages}
+\usepackage{fmtcount}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage[utf8]{inputenc}
+\usepackage{filecontents}
+\usepackage{float}
+\raggedbottom
+\usepackage{subcaption}
+\usepackage{eurosym}
+\usepackage{booktabs}
+\usepackage[T1]{fontenc}
+\usepackage[acronym]
+\makeatletter
+
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+    \hbox{}
+    \thispagestyle{plain}
+    \newpage
+    \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother \clearpage{\pagestyle{plain}\cleardoublepage}
+
+\providecommand{\keywords}[1]{\textbf{Keywords:} #1}
+\providecommand{\keywordsP}[1]{\textbf{Palavras chave:} #1}
+\newcommand{\secref}[1]{\autoref{#1}. \nameref{#1}}
+\usepackage{lscape}
+\usepackage{adjustbox}
+\usepackage{booktabs}
+\usepackage{multirow}
+\hypersetup{hidelinks}
+\usepackage{longtable}
+\usepackage{acronym} 
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage[symbol]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+%-----------------------------------------------------------------
+% Begin Document
+%------------------------------------------------------------------
+
+\begin{document}
+\begin{sloppy}
+\frontmatter
+
+%-----------------------------------------------------------------
+% Cover
+%------------------------------------------------------------------
+\input{titlepage}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+
+%-----------------------------------------------------------------
+% Folha de rosto
+%------------------------------------------------------------------
+\input{coverpage}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+
+%-----------------------------------------------------------------
+% Disclaimer
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+    \vspace*{\fill}
+    As opiniões expressas nesta publicação são
+    da exclusiva responsabilidade do seu autor. \\
+    
+    \vspace*{2cm}
+    
+    \begingroup
+        \fontsize{14pt}{12pt}\selectfont
+        \textbf{A impressão desta tese foi aprovada pelo Conselho Científico da Faculdade de Medicina de Lisboa em reunião de 20 de Dezembro de 2022.}
+    \endgroup
+\end{center}
+\blankpage
+
+%-----------------------------------------------------------------
+% Dedication
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{empty}
+\vspace*{3cm}
+\begin{center}
+\emph{"The greatest adventure is what lies ahead.\\
+Today and tomorrow are yet to be said.\\
+The chances, the changes are all yours to make.\\
+The mould of your life is in your hands to break."} \\
+\end{center} 
+\begin{flushright}-J. R. R. Tolkien, The Hobbit\end{flushright}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+
+
+%-----------------------------------------------------------------
+% Acknowledgements
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{plain}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+\chapter*{Acknowledgements}
+\input{chapters/acknowledgements.tex}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+
+%-----------------------------------------------------------------
+% Summary
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{plain}
+\addcontentsline{toc}{chapter}{Summary}
+\chapter*{Summary}
+\input{chapters/abstract.tex}
+
+\keywords{Clinical Microbiology, Genome Sequencing, Metagenomics, Reproducibility, Interoperability}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+
+%-----------------------------------------------------------------
+% Resumo
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{plain}
+\addcontentsline{toc}{chapter}{Resumo}
+\chapter*{Resumo}
+\input{chapters/resumo.tex}
+
+\keywords{Microbiologia Clínica, Sequênciação genómica, Metagenómica, Reproducibilidade, Interoperabilidade}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+
+%-----------------------------------------------------------------
+% Thesis Outline
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{plain}
+\addcontentsline{toc}{chapter}{Thesis Outline}
+\chapter*{Thesis Outline}
+\input{chapters/thesis_outline}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+
+%-----------------------------------------------------------------
+% Abbreviations
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{plain}
+\addcontentsline{toc}{chapter}{Abbreviation}
+\chapter*{Abbreviation}
+\input{chapters/acconyms}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+
+%-----------------------------------------------------------------
+% Table of Contents
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{plain}
+\addcontentsline{toc}{chapter}{Table of Contents}
+\renewcommand{\contentsname}{Table of Contents}
+\tableofcontents
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+\newpage
+\thispagestyle{plain}
+\listoftables
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+\newpage
+\thispagestyle{plain}
+\listoffigures
+%\clearpage \thispagestyle{empty}\mbox{}\clearpage
+
+\mainmatter
+%\pagenumbering{arabic} %numeros em numeração árabe
+
+%-----------------------------------------------------------------
+% Introduction
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{empty}
+\chapter{General Introduction\label{ch:introduction}}
+\thispagestyle{empty}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+\newpage
+\begin{refsection}
+\include{chapters/introduction}
+\newpage
+\section{References}
+\printbibliography[heading=none]
+\end{refsection}
+
+\part{Applying metagenomics in the clinical context}
+%-----------------------------------------------------------------
+% Paper 1 - Natacha
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{empty}
+\chapter{Critical steps in clinical shotgun metagenomics for the concomitant detection and typing of microbial pathogens\label{ch:paper1}}
+
+\thispagestyle{empty}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+\newpage
+\begin{refsection}
+\include{chapters/chapter_2}
+\newpage
+\section{References}
+\printbibliography[heading=none]
+\end{refsection}
+
+%-----------------------------------------------------------------
+% Paper 2 - Peppe
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{empty}
+\chapter{Detection of a novel \textit{mcr-5.4} gene variant in hospital tap water by shotgun metagenomic sequencing\label{ch:paper2}}
+
+\thispagestyle{empty}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+\newpage
+\begin{refsection}
+\include{chapters/chapter_3}
+\newpage
+\section{References}
+\printbibliography[heading=none]
+\end{refsection}
+
+%-----------------------------------------------------------------
+% Paper 3 - DEN-IM
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{empty}
+\chapter{DEN-IM: Dengue virus genotyping from shotgun and targeted metagenomics\label{ch:paper3}}
+
+\thispagestyle{empty}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+\newpage
+\begin{refsection}
+\include{chapters/chapter_4}
+\newpage
+\section{References}
+\printbibliography[heading=none]
+\end{refsection}
+
+\part{Impact of \textit{de novo} assemblers in metagenomics}
+%-----------------------------------------------------------------
+% Paper 4 - LMAS
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{empty}
+\chapter{LMAS: Last Metagenomic Assembler Standing\label{ch:paper4}}
+
+\thispagestyle{empty}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+\newpage
+\begin{refsection}
+\include{chapters/chapter_5}
+\newpage
+\section{References}
+\printbibliography[heading=none]
+\end{refsection}
+
+\part{Challenges of data availability in metagenomics and beyond}
+%-----------------------------------------------------------------
+% Paper 5 - hAMRonization
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{empty}
+\chapter{hAMRonization: Enhancing antimicrobial resistance prediction using PHA4GE standards and specification\label{ch:paper5}}
+
+\thispagestyle{empty}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+\newpage
+\begin{refsection}
+\include{chapters/chapter_6}
+\newpage
+\section{References}
+\printbibliography[heading=none]
+\end{refsection}
+
+%-----------------------------------------------------------------
+% Paper 6 - SARS-CoV-2
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{empty}
+\chapter{Future-proofing and maximising the utility of metadata: The PHA4GE SARS-CoV-2 contextual data specification package\label{ch:paper6}}
+
+\thispagestyle{empty}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+\newpage
+\begin{refsection}
+\include{chapters/chapter_7}
+\newpage
+\section{References}
+\printbibliography[heading=none]
+\end{refsection}
+
+\part{Crowdsourcing for software robustness in metagenomics and beyond}
+%-----------------------------------------------------------------
+% Paper 7 - Software Testing
+%------------------------------------------------------------------
+\newpage
+\thispagestyle{empty}
+\chapter{Software testing in microbial bioinformatics: a call to action\label{ch:paper7}}
+
+\thispagestyle{empty}
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+\newpage
+\begin{refsection}
+\include{chapters/chapter_8}
+\newpage
+\section{References}
+\printbibliography[heading=none]
+\end{refsection}
+
+
+%-----------------------------------------------------------------
+% Discussion
+%-----------------------------------------------------------------
+
+\newpage
+\thispagestyle{empty}
+\chapter{General Discussion \label{ch:discussion}}
+
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+\begin{refsection}
+\include{chapters/discussion}
+\newpage
+\section{References}
+\printbibliography[heading=none]
+\end{refsection}
+
+%-----------------------------------------------------------------
+% Conclusion
+%-----------------------------------------------------------------
+\newpage
+\chapter{Conclusion \label{ch:conclusion}}
+
+\clearpage \thispagestyle{empty}\mbox{}\clearpage
+\begin{conclusion}
+\include{chapters/conclusion}
+\newpage
+\section{References}
+\printbibliography[heading=none]
+\end{conclusion}
+
+%-----------------------------------------------------------------
+% Appendix
+%-----------------------------------------------------------------
+%\appendix
+\newpage
+\chapter{Appendix}
+\includepdf[pages={1-}]{resources/papers/s41598-018-31873-w.pdf}
+\includepdf[pages={1-}]{resources/papers/dkz363.pdf}
+\includepdf[pages={1-}]{resources/papers/mgen000328.pdf}
+\includepdf[pages={1-}]{resources/papers/giac122.pdf}
+\includepdf[pages={1-}]{resources/papers/giac003.pdf}
+\includepdf[pages={1-}]{resources/papers/mgen000790.pdf}
+
+\end{sloppy}
+\end{document}

@@ -1,0 +1,157 @@
+\mbox{}\\
+\vspace{8cm}
+
+This chapter is a reproduction of the following publication:
+
+B. C. L. van der Putten, C. I. Mendes, B. M. Talbot, J. de Korne-Elenbaas, R. Mamede, P. Vila-Cerqueira, L. P. Coelho, C. A. Gulvik, L. S. Katz and The ASM NGS 2020 Hackathon participants. Software testing in microbial bioinformatics: a call to action. Microbial Genomics, Volume 8, Issue 3, March 2022. DOI: \url{https://doi.org/ 10.1099/mgen.0.000790}
+
+Computational algorithms have become an essential component of microbiome research, with great efforts by the scientific community to raise standards on the development and distribution of code. Despite these efforts, sustainability and reproducibility are major issues since continued validation through software testing is still not a widely adopted practice.  
+
+In the field of microbial bioinformatics, good software engineering practices are not yet widely adopted. Many microbial bioinformaticians start out as (micro)biologists and subsequently learn how to code. Without abundant formal training, a lot of education about good software engineering practices comes down to an exchange of information within the microbial bioinformatics community. 
+
+Here, we report seven recommendations that help researchers implement software testing in microbial bioinformatics. These recommendations are: Establish software needs and testing goals; Use appropriate input test files; Use an easy-to-follow language format to implement testing; Try to automate testing; Test across multiple computational setups; and Encourage others to test your software.
+
+We propose collaborative software testing as an opportunity to continuously engage software users, developers, and students to unify scientific work across domains. As automated software testing remains underused in scientific software, our set of recommendations not only ensures appropriate effort can be invested into producing high-quality and robust software but also increases engagement in its sustainability.
+
+We have developed these recommendations based on our experience from a collaborative hackathon organised prior to the American Society for Microbiology Next Generation Sequencing (ASM NGS) 2020 conference. We also present a repository hosting examples and guidelines for testing, available from \url{https://github.com/microbinfie-hackathon2020/CSIS}.
+
+My contribution to this publication included the development of the seven recommendations here presented, including examples of software testing. Additionally, I have also contributed to the manuscript production and
+editing.
+
+
+
+
+\cleardoublepage 
+
+\begin{center}
+\large
+\textbf{Software testing in microbial bioinformatics: a call to action}
+\end{center}
+
+Boas C. L. van der Putten$^{1,2,*}$, 
+Catarina I. Mendes$^{3,*}$,
+Brooke M. Talbot$^{4}$, 
+Jolinda de Korne-Elenbaas$^{1,5}$, 
+Rafael Mamede$^{3}$, 
+Pedro Vila-Cerqueira$^{3}$, 
+Luis P. Coelho$^{6,7}$, 
+Christopher A. Gulvik$^{8}$, 
+Lee S. Katz$^{9,10}$ and The ASM NGS 2020 Hackathon participants
+
+$^1$Department of Medical Microbiology, Amsterdam UMC, University of Amsterdam, the Netherlands
+
+$^2$Department of Global Health, Amsterdam Institute for Global Health and Development, Amsterdam UMC, University of Amsterdam, the Netherlandss
+
+$^3$Instituto de Microbiologia, Instituto de Medicina Molecular, Faculdade de Medicina, Universidade de Lisboa, Lisboa, Portugal 
+
+$^4$Department of Biological and Biomedical Sciences, Emory University, Atlanta, GA, USA
+
+$^5$Department of Infectious Diseases, Public Health Laboratory, Public Health Service of Amsterdam, the Netherlands
+
+$^6$Institute of Science and Technology for Brain-Inspired Intelligence, Fudan University, PR China
+
+$^7$Key Laboratory of Computational Neuroscience and Brain-Inspired Intelligence, PR China
+
+$^8$Bacterial Special Pathogens Branch, Division of High-Consequence Pathogens and Pathology, Centers for Disease Control and Prevention, Atlanta, GA, USA
+
+$^9$Center for Food Safety, University of Georgia, Griffin, GA, USA
+
+$^{10}$Enteric Diseases Laboratory Branch, Division of Foodborne, Waterborne, and Environmental Diseases, Centers for Disease Control and Prevention, Atlanta, GA, USA
+
+$^*$Contributed equally
+
+\section{Abstract} \label{sec:ch8_abstract}
+
+Computational algorithms have become an essential component of research, with great efforts by the scientific community to raise standards on the development and distribution of code. Despite these efforts, sustainability and reproducibility are major issues since continued validation through software testing is still not a widely adopted practice. Here, we report seven recommendations that help researchers implement software testing in microbial bioinformatics. We have developed these recommendations based on our experience from a collaborative hackathon organised prior to the American Society for Microbiology Next Generation Sequencing (ASM NGS) 2020 conference. We also present a repository hosting examples and guidelines for testing, available from \url{https://github.com/microbinfie-hackathon2020/CSIS}.
+
+
+\section{Impact Statement}
+
+In the field of microbial bioinformatics, good software engineering practices are not yet widely adopted. Many microbial bioinformaticians start out as (micro)biologists and subsequently learn how to code. Without abundant formal training, a lot of education about good software engineering practices comes down to an exchange of information within the microbial bioinformatics community. This paper serves as a resource that could help microbial bioinformaticians get started with software testing if they have not had formal training.
+
+\section{Background}
+
+Computational algorithms, software, and workflows have enhanced the breadth and depth of microbiological research and expanded the capacity of infectious disease surveillance in public health practice. Scientists now have a wealth of bioinformatic tools for addressing pertinent questions quickly and keeping pace with the availability of larger and more complex biological datasets. Despite these advances, we are finding ourselves in a crisis of computational reproducibility \cite{stodden_empirical_2018}.
+
+Modern software engineering advocates reliable software testing standards and best practices. Different approaches are employed: from unit testing to system testing \cite{krafczyk_scientific_2019}, going from testing every individual component to testing a tool as a whole (Fig. \ref{fig:chap8_figure1}). The extent of testing is a balance between the resources available and increasing sustainability and reproducibility. Continuous Integration (CI), where code changes are frequently integrated and assertion of the new code’s correctness before integration is often automatedly performed through tests, provides a robust approach for ensuring the reproducibility of scientific results without requiring human interaction. Comprehensive testing of scientific software might prevent computational errors which subsequently lead to erroneous results and retractions \cite{chang_retraction_2006,hall_retraction_2007}. However, the role of testing extends beyond that, as it also provides a way to measure software coverage, and therefore its robustness, allowing for reported issues to be converted into testable actions (regression tests), and the expansion and refactoring of existing code without compromising its function.
+
+\begin{figure*}[]
+\centering
+\includegraphics[width=\textwidth]{figures/chapter 8/mgen000790-f1.png}
+\caption{Testing strategies. (a) White-box vs. black-box testing. In white-box testing, the tester knows the underlying code and structure of the software, where the tester does not know this in black-box testing. Note that this distinction is not strictly dichotomous and is considered less useful nowadays (b) Unit vs. integration vs. system testing. When software comprises several modules, it is possible to test each single module (unit testing), groups of related modules (integration testing) or all modules (system testing). Note that the terms white-box testing and unit testing are sometimes used interchangeably but relate to different concepts}
+\label{fig:chap8_figure1}
+\end{figure*}
+
+Software testing among peers across fields aligns with previous efforts of hackathons to create a more unified and informed bioinformatics software community \cite{busby_closing_2016}. In this context, we hosted a cooperative hackathon prior to the ASM NGS conference in 2020, demonstrating that the microbial bioinformatics community can contribute to software sustainability using a collaborative platform (Table \ref{}). From this experience, we would like to propose collaborative software testing as an opportunity to continuously engage software users, developers, and students to unify scientific work across domains. We have outlined the following recommendations for ensuring software sustainability through testing and offer a repository of automated test knowledge and examples at the Code Safety Inspection Service (CSIS) repository on GitHub (\url{https://github.com/microbinfie-hackathon2020/CSIS}).
+
+\section{Recommendations}
+
+Based on our experiences from the ASM NGS 2020 hackathon, we developed seven recommendations that can be followed during software development.
+
+\subsection{Establish software needs and testing goals}
+
+Manually testing the functionality of a tool is feasible in early development but can become laborious as the software matures. Developers may establish software needs and testing goals during the planning and designing stages to ensure an efficient testing structure. Table \ref{tab:ch8_table1} provides an overview of testing methodologies and can serve as a guide to developers that aim to implement testing practises. A minimal test set could address the validation of core components or the programme as a whole (system testing) and gradually progress toward verification of key functions which can accommodate code changes over time (unit testing, Figure \ref{fig:chap8_figure1}). Ideally, testing should be implemented from the early stages of software development (test-driven development). Defining the scope of testing is important before developing tests. For pipeline development, testing of each individual component can be laborious and can be expedited if those components already implement testing of their own. Testing of the pipeline itself should take priority.
+
+\input{tables/chapter_8/table1}
+
+\subsection{Input test files: the good, the bad, and the ugly}
+
+When testing, it is important to include test files with known expected outcomes for a successful run. However, it is equally important to include files or other inputs on which the tool is expected to fail. For example, some tools should recognize and report an empty input file or a wrong input format. Therefore, the test dataset should be small enough to be easily deployed (see recommendation #4) but as large as necessary to cover all intended test cases. Data provenance should be disclosed, either if it’s from real data or originated in silico. Typically, a small test data is packaged with the software. Examples of valid and invalid file formats are available through the BioJulia project (\url{https://github.com/BioJulia/BioFmtSpecimens}). The nf-core project (\url{https://nf-co.re/}) provides a repository with test data for a myriad of cases (\url{https://github.com/nf-core/test-datasets}).
+
+\subsection{Use an established framework to implement testing}
+
+Understanding the test workflow can not only ensure continued software development but also the integrity of the project for developers and users. Testing frameworks improve test development and efficiency. Examples include unittest (\url{https://docs.python.org/3/library/unittest.html}) or pytest (\url{https://docs.pytest.org/en/stable/}) for Python, and testthat (\url{https://testthat.r-lib.org/}) for R, testing interfaces such as TAP (\url{http://testanything.org/}), or built-in test attributes such as in Rust. Although many tests can be implemented using a combination of frameworks, personal preferences (e.g. amount of boilerplate code required) might drive your choice. Additionally, in Github Actions the formulas of each test block can be explicitly stated using the standardised and easy-to-follow YAML (\url{https://yaml.org/}, Fig. \ref{}, available in the online version of this article), already adopted by most continuous integration platforms (recommendation \#4). For containerised software, testing considerations differ slightly and have been covered previously by Gruening et al. (2019) \cite{gruening_recommendations_2019}.
+
+\subsection{Testing is good, automated testing is better}
+
+When designing tests, planning for automation saves development time. Whether your tests are small or comprehensive, automatic triggering of tests will help reduce your workload. Many platforms trigger tests automatically based on a set of user-defined conditions. Platforms such as GitHub Actions (\url{https://github.com/features/actions}) and GitLab CI (\url{https://about.gitlab.com/stages-devops-lifecycle/continuous-integration}) offer straightforward automated testing of code seamlessly upon deployment. A typical workflow, consisting of a minimal testing framework (see recommendation \#1 and \#3) and a small test dataset (see recommendation \#2), can then be directly integrated within your project hosted on a version control system, such as GitHub (\url{https://github.com/}), and directly integrated with a continuous integration provider, such as GitHub Actions in GitHub. Testing considerations for containerised software has been covered previously by Gruening et al. (2019) \cite{gruening_recommendations_2019}.
+
+\subsection{Ensure portability by testing on several platforms}
+
+The result of an automated test in the context of one computational workspace does not ensure the same result will be obtained in a different setup. It is important to ensure your software can be installed and used across supported platforms. One way to ensure this is to test on different environments, with varying dependency versions (e.g. multiple Python versions, instead of only the most recent one). Developers can gain increased benefits of testing if tests are run on different setups automatically (see recommendation \#4 and Fig. \ref{tab:ch8_table_sup1}).
+
+\subsection{Showcase the tests}
+
+For prospective users, it is good to know whether you have tested your software and, if so, which tests you have included. This can be done by displaying a badge \cite{trockman_adding_2018} (see \url{https://github.com/microbinfie-hackathon2020/CSIS/blob/main/README.md#example-software-testing}), or linking to your defined testing strategy e.g. a GitHub Actions YAML, (see recommendation \#2, Fig. \ref{tab:ch8_table_sup1}). Documenting the testing goal and process enables end-users to easily check tool functionality and the level of testing \cite{karimzadeh_top_2018}.
+
+It may be helpful to contact the authors, directly or through issues in the code repository, whose software you have tested to share successful outcomes or if you encountered abnormal behaviour or component failures. An external perspective can be useful to find bugs that the authors are unaware of. A set of issue templates for various situations is available in the CSIS repository on GitHub (\url{https://github.com/microbinfie-hackathon2020/CSIS/tree/main/templates}).
+
+\subsection{Encourage others to test your software}
+
+Software testing can be crowdsourced, as showcased by the ASM NGS 2020 hackathon. Software suites such as Pangolin (\url{https://github.com/cov-lineages/pangolin}) \cite{otoole_assignment_2021} and chewBBACA (\url{https://github.com/B-UMMI/chewBBACA}) \cite{silva_chewbbaca_nodate} have implemented automated testing developed during the hackathon. For developers, crowdsourcing offers the benefits of fresh eyes on your software. Feedback and contributions from users can expedite the implementation of software testing practices. It also contributes to software sustainability by creating community buy-in, which ultimately helps the software maintainers keep pace with dependency changes and identify current user needs.
+
+\section{Conclusions}
+ 
+Testing is a critical aspect of scientific software development, but automated software testing remains underused in scientific software. In this hackathon, we demonstrated the usefulness of testing and developed a set of recommendations that should improve the development of tests. We also demonstrated the feasibility of producing test suites for already-established microbial bioinformatics software (Table S1).
+
+ 
+\section{Funding information}
+ 
+C.I.M. was supported by the Fundação para a Ciência e Tecnologia (grant SFRH/BD/129483/2017). L.P.C. was partially supported by Shanghai Municipal Science and Technology Major Project (2018SHZDZX01) and ZJLab. R. M. was supported by the Fundação para a Ciência e Tecnologia (grant 2020.08493.BD).
+
+ 
+\section{Acknowledgements}
+ 
+The findings and conclusions in this report are those of the authors and do not necessarily represent the official position of the Centers for Disease Control and Prevention (CDC). The mention of company names or products does not constitute an endorsement by the CDC.
+
+ 
+\section{Author contributions}
+ 
+In addition to the authors, the following participants were responsible for automating tests for bioinformatic tools and contributing a community resource for identifying software that can pass unit tests, available at \url{https://github.com/microbinfie-hackathon2020/CSIS}. Participants are listed alphabetically: Áine O’Toole, Amit Yadav, Justin Payne, Mario Ramirez, Peter van Heusden, Robert A. Petit III, Verity Hill, Yvette Unoarumhi.
+
+ 
+\section{Conflicts of interest}
+ 
+The authors declare that there are no conflicts of interest.
+
+\section{Supplemental Material}
+
+\begin{figure*}[]
+\centering
+\includegraphics[width=\textwidth]{figures/chapter 8/sup_fig_1.png}
+\caption{Example YAML file for a GitHub Actions workflow.}
+\label{fig:chap8_sup_figure1}
+\end{figure*}
+
+
+\input{tables/chapter_8/suptable1}
