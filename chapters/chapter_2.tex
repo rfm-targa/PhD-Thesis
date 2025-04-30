@@ -1,11 +1,14 @@
 \mbox{}\\
 \vspace{8cm}
 
-This chapter is a reproduction of the following publication:
+This chapter is a reproduction of the following article:
 
-N. Couto, L. Schuele, E.C. Raangs, M. P. Machado, C. I. Mendes, T. F. Jesus, M. Chlebowicz,  S. Rosema, M. Ramirez, J. A. Carriço, I. B. Autenrieth, A. W. Friedrich, S. Peter and J. W. Rossen. Critical steps in clinical shotgun metagenomics for the concomitant detection and typing of microbial pathogens. Sci Rep 8, 13767 (2018). DOI: \url{https://doi.org/10.1038/s41598-018-31873-w}
+R. Mamede, P. Vila-Cerqueira, J. A. Carriço, M. Ramirez. chewBBACA 3: lowering the barrier for scalable and detailed whole- and core-genome multilocus sequence typing. (2025)
 
-The supplementary information referred throughout the text can be consulted in this chapter before the section of references. 
+
+% N. Couto, L. Schuele, E.C. Raangs, M. P. Machado, C. I. Mendes, T. F. Jesus, M. Chlebowicz,  S. Rosema, M. Ramirez, J. A. Carriço, I. B. Autenrieth, A. W. Friedrich, S. Peter and J. W. Rossen. Critical steps in clinical shotgun metagenomics for the concomitant detection and typing of microbial pathogens. Sci Rep 8, 13767 (2018). DOI: \url{https://doi.org/10.1038/s41598-018-31873-w}
+
+The supplementary information referred to throughout the text can be consulted in this chapter before the References section. 
 
 As mentioned in Chapter \ref{ch:introduction}, section \ref{sssec:_intro_shotgun_metagenomics}, \ac{SMg} approaches have been a growing interest to deliver clinically relevant results without \textit{a priori} knowledge of what to expect from a particular clinical sample or patient. 
 The capacity to detect all potential pathogens in a sample has great potential utility in the diagnosis of infectious disease. 
@@ -20,47 +23,33 @@ My contribution to this publication included the bioinformatics analysis of all 
 
 \begin{center}
 \large
-\textbf{Critical steps in clinical shotgun metagenomics for the concomitant detection and typing of microbial pathogens}
+\textbf{chewBBACA 3: lowering the barrier for scalable and detailed whole- and core-genome multilocus sequence typing}
 \end{center}
 
-Natacha Couto$^1$, 
-Leonard Schuele$^1,2$,
-Erwin C. Raangs$^1$,
-Miguel P. Machado$^3$, 
-Catarina I. Mendes$^1,3$,
-Tiago F. Jesus$^3$, 
-Monika Chlebowicz$^1$, 
-Sigrid Rosema$^1$, 
-Mário Ramirez$^3$, 
-João A. Carriço$^3$, 
-Ingo B. Autenrieth$^2$, 
-Alex W. Friedrich$^1$, 
-Silke Peter$^2$, 
-John W. Rossen$^1$
+Rafael Mamede$^{1,2}$, 
+Pedro Vila-Cerqueira$^{1}$,
+João André Carriço$^{1}$,
+Mário Ramirez$^{1}$
 
-$^1$ University of Groningen, University Medical Center Groningen, Department of Medical Microbiology, Groningen, The Netherlands;
+$^1$ Instituto de Microbiologia, Instituto de Medicina Molecular, Faculdade de Medicina, Universidade de Lisboa, Portugal;
 
-$^2$ Institute of Medical Microbiology and Hygiene, University of Tübingen, Germany; 
-
-$^3$ Instituto de Microbiologia, Instituto de Medicina Molecular, Faculdade de Medicina, Universidade de Lisboa, Portugal.
-
+$^2$ Gulbenkian Institute for Molecular Medicine.
 
 \section{Abstract} \label{sec:ch2_abstract}
 
-High throughput sequencing has been proposed as a one-stop solution for diagnostics and molecular typing directly from patient samples, allowing timely and appropriate implementation of measures for treatment, infection prevention and control. 
-However, it is unclear how the variety of available methods impacts the end results. 
-We applied shotgun metagenomics on diverse types of patient samples using three different methods to deplete human DNA prior to DNA extraction.
-Libraries were prepared and sequenced with Illumina chemistry. 
-Data was analysed using methods likely to be available in clinical microbiology laboratories using genomics. 
-The results of microbial identification were compared to standard culture-based microbiological methods. 
-On average, 75\% of the reads were corresponded to human DNA, being a major determinant in the analysis outcome. 
-None of the kits was clearly superior suggesting that the initial ratio between host and microbial DNA or other sample characteristics were the major determinants of the proportion of microbial reads. 
-Most pathogens identified by culture were also identified through metagenomics, but substantial differences were noted between the taxonomic classification tools. 
-In two cases the high number of human reads resulted in insufficient sequencing depth of bacterial DNA for identification. 
-In three samples, we could infer the probable multilocus sequence type of the most abundant species. 
-The tools and databases used for taxonomic classification and antimicrobial resistance identification had a key impact on the results, recommending that efforts need to be aimed at standardisation of the analysis methods if metagenomics is to be used routinely in clinical microbiology.
+\subsection{Background} \label{ssec:ch2_abstract}
 
-\section{Introduction} \label{sec:ch2_introduction}
+The wide adoption of whole genome sequencing has enabled the implementation of genomics-based systems, which provide unparalleled resolution for the surveillance and outbreak investigation of bacterial pathogens. To fully exploit the wealth and complexity of genomics data, bioinformatics methods need to be highly scalable, provide accurate and extensive data for potential downstream analyses, as well as analytic capabilities. Here, we present chewBBACA 3, a suite of modules for scalable and comprehensive bacterial whole- and core-genome multilocus sequence typing (wg/cgMLST) with built-in features to create new schemas, evaluate loci diversity and strain similarity.
+
+\subsection{Results} \label{ssec:ch2_abstract}
+
+chewBBACA 3 enables faster and more accurate schema creation and allele calling by complementing an alignment-based approach with alignment-free methods, including hash-based comparisons and minimizer-based clustering. Schema creation is up to 55-fold faster and identifies up to 10\% more loci than its predecessor, chewBBACA 2. Furthermore, chewBBACA 3 can quickly adapt or import schemas available on external wg/cgMLST platforms or Chewie-NS, promoting interoperability. The efficiency of allele calling allows processing larger genome collections, from thousands to tens of thousands of genomes, at the whole- and core-genome levels without requiring high computational resources and being up to 52-fold faster than similar tools. chewBBACA 3’s enhanced sensitivity allows it to identify and classify more schema loci and coding sequences than the compared methods, resulting in higher resolution for strain comparison. Moreover, the allelic profiles, classification statistics and associated sequence data produced by chewBBACA 3 can be the basis for detailed analyses that provide added value in surveillance and outbreak investigation settings. New modules leverage the potential of the schema and allele call results data to create interactive reports that enable an intuitive and in-depth analysis of allele diversity in loci of interest and allow assessing strain similarity based on loci presence, allelic distances and phylogenetic analysis.
+
+\subsection{Conclusions} \label{ssec:ch2_abstract}
+
+chewBBACA 3 provides functionalities for complete wg/cgMLST analysis at scale, lowering the barrier for the use of wg/cgMLST and offering extensive results and analytic capabilities for streamlined, comprehensive, and local analyses. chewBBACA 3 is freely available at \url{https://github.com/B-UMMI/chewBBACA}.
+
+\section{Background} \label{sec:ch2_background}
 
 Classical microbial culture is still considered the gold standard in medical microbiology. 
 Several molecular detection techniques have been implemented but these are generally geared towards specific pathogens (e.g. specific RT-PCR or microarrays). 
