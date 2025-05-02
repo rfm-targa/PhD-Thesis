@@ -1,41 +1,17 @@
 \begin{table}[h!]
-\caption{Supplementary table 1.}
-\label{tab:ch2_suptable1}
-\resizebox{\linewidth}{!}{%
-\begin{tabular}{ll}
-\toprule
-\multicolumn{2}{c}{\textbf{FastQ Toolkit v2.2.0}}                                       \\ \midrule
-Minimum read length                             & 32                           \\
-Sub-sampling                                    & FALSE                        \\
-Adapter trim stringency                         & 0.9                          \\
-Select respective adapters                      & TRUE                         \\
-Quality trimming                                & FALSE                        \\
-Poly-A/T Trimming                               & FALSE                        \\
-Read Filtering                                  & FALSE                        \\
-Modify Reads                                    & FALSE                        \\
-Fix Format                                      & FALSE                        \\ \midrule
-\multicolumn{2}{c}{\textbf{FastQC v1.0.0}}                                              \\ \midrule
-Kmer Size                                       & 5                            \\
-Use Conatminant Filter                          & TRUE                         \\ \midrule
-\multicolumn{2}{c}{\textbf{Kraken Metagenomics v1.0.0}}                                 \\ \midrule
-Host Filter                                     & TRUE RefSeqhg19              \\
-Classification Database                         & MiniKraken 20141208 (latest) \\
-Filter Threshold                                & 0                            \\ \midrule
-\multicolumn{2}{c}{\textbf{Metaphlan v1.0.0}}                                           \\ \midrule
-Sensitivity options for read-marker similarity (as descibed by BowTie2)                  & Very Sensitive \\
-\multicolumn{2}{c}{\textbf{SPAdes Genome Assembler v3.9.0}}                             \\
-Running Mode                                    & Error Correction \& Assembly \\
-Dataset type                                    & Multi Cell                   \\
-Careful Mode                                    & Disable                      \\
-k-mer lengths                                   & Auto                         \\ \midrule
-\multicolumn{2}{c}{\textbf{SEAR: Antibiotic Resistance v1.0.0}}                                           \\ \midrule
-Read length cutoff (bases)                      & 70                           \\
-Read quality score cutoff                       & 20                           \\
-Read subtraction against E.coli reference genome (K12)?                                  & No             \\
-Clustering stringency (express \% as a decimal) & 0.98                         \\
-Annotation stringency (\% length of reference ARG sequence mapped to by sequencing reads & 40             \\\midrule
-\multicolumn{2}{c}{\textbf{GENIUS Metagenomics: Know Now v1.1.0}}                                                  \\ \midrule
-Can't set any settings in BaseSpace             & \\                    \midrule    
-\end{tabular}%
-}
+    \caption{Runtime (in minutes, min) and peak memory usage (in megabytes, MB) values for the creation of the schema seeds with chewBBACA 2 and chewBBACA 3 based on the complete genomes for each species.}
+    \label{tab:ch2_tableS1}
+    \centering
+    \resizebox{\linewidth}{!}{
+    \small
+    \begin{tabular}{@{}lllllllllllllllllll@{}}
+    \toprule
+    \multicolumn{1}{|c|}{} & \multicolumn{10}{|c|}{chewBBACA 3} & \multicolumn{6}{|c|}{chewBBACA 2} & \multicolumn{2}{|c|}{pyMLST} \\ \midrule
+    Species & EXC & INF & PLOT3 & PLOT5 & LOTSC & NIPH & NIPHEM & ALM & ASM & PAMA & EXC & INF & PLOT & NIPH & ALM & ASM & EXC & NIPHEM \\ \midrule
+    \textit{S. pyogenes} & 21735280 & 218736 & 221 & 1817 & 98 & 154 & 1757 & 1170 & 20841 & 0 & 21736576 & 218665 & 2370 & 504 & 1210 & 20994 & 19078994 & 31 \\
+    \textit{L. monocytogenes} & 38543696 & 538769 & 78 & 5594 & 59 & 23357 & 918118 & 690 & 21541 & 0 & 38552279 & 538435 & 6349 & 932267 & 1149 & 21611 & 23342559 & 289 \\
+    \textit{S. enterica} & 50639542 & 919227 & 308 & 5770 & 31 & 14416 & 523022 & 1309 & 37156 & 31 & 50663361 & 916359 & 6806 & 517896 & 1437 & 36854 & 39838200 & 1200 \\
+    \bottomrule
+    \end{tabular}
+    }
 \end{table}
