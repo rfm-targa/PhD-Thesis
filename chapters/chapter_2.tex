@@ -270,10 +270,6 @@ All authors contributed to the design of the tool. RM implemented, tested, and b
 %\ref{fig:chap2_figure1}
 %$leq$ 7
 
-% \begin{landscape}
-% \input{tables/chapter_2/table2}
-% \end{landscape}
-
 \newpage
 
 \section{Supplemental Material}
@@ -328,7 +324,7 @@ All authors contributed to the design of the tool. RM implemented, tested, and b
 \newpage
 \begin{figure*}[h!]
     \centering
-    \includegraphics[angle=0,width=\textwidth]{figures/chapter 2/FigureS7.pdf}
+    \includegraphics[angle=0,width=0.9\textwidth]{figures/chapter 2/FigureS7.pdf}
     \caption{Sequence hashing and modified polyline encoding. (A) Each distinct CDS identified in the input genomes is hashed with the SHA-256 algorithm implemented in Python's hashlib library. The hash digest is obtained through the hexdigest method and mapped to the list of integer identifiers for the genomes containing the CDS encoded with modified polyline encoding. (B) After sequence translation and deduplication, each distinct translated CDS is hashed with the SHA-256 algorithm and the hash digest is mapped against lists with pairs of protein and genome identifiers used to identify each distinct CDS coding for the protein encoded with modified polyline encoding. The modified polyline encoding is applied to reduce the memory used to retain the data in-memory during the process, drastically reducing peak memory usage when processing large datasets. The Python dictionaries created to map the hashes to the lists of identifiers allow quick identification and classification of exact and inexact matches.}
     \label{fig:chap2_figureS7}
 \end{figure*}
@@ -453,6 +449,30 @@ All authors contributed to the design of the tool. RM implemented, tested, and b
     \label{fig:chap2_figureS22}
 \end{figure*}
 
-\input{tables/chapter_2/suptable1}
+\begin{landscape}
+\vspace*{\fill}
+\begin{table}[h!]
+    \caption{Runtime (in minutes, min) and peak memory usage (in megabytes, MB) values for the creation of the schema seeds with chewBBACA 2 and chewBBACA 3 based on the complete genomes for each species.}
+    \label{tab:ch2_tableS1}
+    \centering
+    \resizebox{\linewidth}{!}{%
+    \small
+    \begin{tabular}{@{}lllllllllllllllllll@{}}
+    \toprule
+    \multicolumn{1}{|c|}{} & \multicolumn{10}{|c|}{chewBBACA 3} & \multicolumn{6}{|c|}{chewBBACA 2} & \multicolumn{2}{|c|}{pyMLST} \\ \midrule
+    Species & EXC & INF & PLOT3 & PLOT5 & LOTSC & NIPH & NIPHEM & ALM & ASM & PAMA & EXC & INF & PLOT & NIPH & ALM & ASM & EXC & NIPHEM \\ \hline
+    \textit{S. pyogenes} & 21735280 & 218736 & 221 & 1817 & 98 & 154 & 1757 & 1170 & 20841 & 0 & 21736576 & 218665 & 2370 & 504 & 1210 & 20994 & 19078994 & 31 \\ \hline
+    \textit{L. monocytogenes} & 38543696 & 538769 & 78 & 5594 & 59 & 23357 & 918118 & 690 & 21541 & 0 & 38552279 & 538435 & 6349 & 932267 & 1149 & 21611 & 23342559 & 289 \\ \hline
+    \textit{S. enterica} & 50639542 & 919227 & 308 & 5770 & 31 & 14416 & 523022 & 1309 & 37156 & 31 & 50663361 & 916359 & 6806 & 517896 & 1437 & 36854 & 39838200 & 1200 \\
+    \bottomrule
+    \end{tabular}%
+    }
+\end{table}
+\vspace*{\fill}
+\end{landscape}
 
 
+
+% \begin{landscape}
+% \input{tables/chapter_2/table2}
+% \end{landscape}
