@@ -3,7 +3,7 @@
 
 This chapter is a reproduction of the following publication:
 
-G. Fleres, N. Couto, L. Schuele, M. A. Chlebowicz, C. I. Mendes, L. W. M. van der Sluis, J. W. A. Rossen, A. W Friedrich, S. García-Cobos, Detection of a novel mcr-5.4 gene variant in hospital tap water by shotgun metagenomic sequencing, Journal of Antimicrobial Chemotherapy, Volume 74, Issue 12, December 2019, Pages 3626–3628, DOI: \url{https://doi.org/10.1093/jac/dkz363}
+R. Mamede, P. Vila-Cerqueira, M. Silva, J. A. Carriço, M. Ramirez, Chewie Nomenclature Server (Chewie-NS): a deployable nomenclature server for easy sharing of core and whole genome MLST schemas, Nucleic Acids Research, Volume 49, Database Issue, January 2021, D660-D666, DOI: \url{https://doi.org/10.1093/nar/gkaa889}
 
 As referenced in Chapter \ref{ch:introduction}, section \ref{ssec:_intro_survaillance}, sequencing has become a common tool in surveillance and infection prevention, when combined with epidemiological data, have undoubtedly provided immeasurable insights regarding the identification of potential sources of pathogenicity and transmission pathways. \ac{SMg} approaches, just like in a clinical setting, have been a growing interest to deliver relevant results without a priori knowledge of what to expect from a particular environmental sample. 
 
@@ -11,109 +11,90 @@ In this publication, second (see Chapter \ref{ch:introduction}, section \ref{sse
 
 My contribution to this publication included the bioinformatics analysis of the \textit{mcr-5.4} carrying sample thorough hybrid assembly using metaSPAdes. The resulting assembled contigs were binned with the MaxBin2 tool and the bin having the sequence carrying the gene of interest was taxonomically characterised with Kraken2.
 
-
 \cleardoublepage 
 
 \begin{center}
 \large
-\textbf{Detection of a novel \textit{mcr-5.4} gene
-variant in hospital tap water by
-shotgun metagenomic sequencing}
+\textbf{Chewie Nomenclature Server (Chewie-NS): a deployable nomenclature server for easy sharing of core and whole genome MLST schemas}
 \end{center}
 
-Giuseppe Fleres$^1$, 
-Natacha Couto$^1$, 
-Leonard Schuele$^1$,
-Monika A. Chlebowicz$^1$,
-Catarina I. Mendes$^1$,
-Luc W. M. van der Sluis$^2$, 
-John W. A. Rossen$^1$, 
-Alex W. Friedrich$^1$, 
-Silvia García-Cobos$^1$
+Rafael Mamede$^{1,2}$, 
+Pedro Vila-Cerqueira$^1$, 
+Mickael Silva$^1$,
+João A. Carriço$^1$,
+Mário Ramirez$^1$,
 
-$^1$ University of Groningen, University Medical Center Groningen, Department of Medical Microbiology, Groningen, The Netherlands;
+$^1$ Instituto de Microbiologia, Instituto de Medicina Molecular, Faculdade de Medicina, Universidade de Lisboa, Portugal;
 
-$^2$ Center of Dentistry and Oral Hygiene, University
-Medical Center Groningen, 9712 CP Groningen, The Netherlands
+$^2$ Gulbenkian Institute for Molecular Medicine.
 
-\section{Letter}
+\section{Abstract} \label{sec:ch3_abstract}
 
-Sir,
+\ac{Chewie-NS} (\url{https://chewbbaca.online/}) allows users to share genome-based gene-by-gene typing schemas and to maintain a common nomenclature, simplifying the comparison of results. The combination between local analyses and a public repository of allelic data strikes a balance between potential confidentiality issues and the need to compare results. The possibility of deploying private instances of \ac{Chewie-NS} facilitates the creation of nomenclature servers with a restricted user base to allow compliance with the strictest data policies. \ac{Chewie-NS} allows users to easily share their own schemas and to explore publicly available schemas, including informative statistics on schemas and loci presented in interactive charts and tables. Users can retrieve all the information necessary to run a schema locally or all the alleles identified at a particular locus. The integration with the chewBBACA suite enables users to directly upload new schemas to \ac{Chewie-NS}, download existing schemas and synchronize local and remote schemas from chewBBACA command line version, allowing an easier integration into high-throughput analysis pipelines. The same \ac{REST} \ac{API} linking \ac{Chewie-NS} and the chewBBACA suite supports the interaction of other interfaces or pipelines with the databases available at \ac{Chewie-NS}, facilitating the reusability of the stored data.
 
-Colistin is considered a last-resort antibiotic for treating serious infections caused by MDR Gram-negative bacteria. 
-The efficacy of this antibiotic is challenged by the emergence and global spread of mobile colistin resistance (\textit{mcr}) determinants, which threaten human, animal and environmental health. 
-The first mobile colistin resistance gene (\textit{mcr-1}) was reported in 2015 and since then up to eight different variants have been described \citep{wang_emergence_2018}. 
-In 2017, Borowiak et al.\citep{borowiak_identification_2017} described a new transposon-associated phosphoethanolamine transferase mediating colistin resistance, named \textit{mcr-5}, in d-tartrate-fermenting \textit{Salmonella enterica} subsp. enterica serovar Paratyphi B isolated from poultry. 
-The \textit{mcr-5.3} variant has been recently reported in \textit{Stenotrophomonas} spp. from sewage water \citep{li_co-occurrence_2019}.
-Here we report for the first time (to the best of our knowledge) the detection of an \textit{mcr-5} gene in a hospital water environment using short-read metagenomic sequencing (SRMseq) and subsequent characterization using long-read metagenomic sequencing (LRMseq) to reveal its genetic environment.
+\section{Introduction} \label{sec:ch3_introduction}
 
-In June 2017, eight tap-water samples (900 mL) were collected at the University Medical Center Groningen. 
-Water samples were filtered (0.2 lm) and after DNA extraction (PowerWater DNA Extraction Kit, QIAGEN), SRMseq was performed on a MiSeq instrument (500 cycles) (Illumina). 
-Antibiotic resistance genes were identified in the metagenome assemblies (CLC Genomics Workbench v10.1.1, QIAGEN) using ABRicate-0.7 (https://github.
-com/tseemann/abricate) and applying the following thresholds:
-.70\% identity and .80\% coverage. 
-One sample contained an \textit{mcr}-type gene (5\% sequencing depth), with the nucleotide change 313C.T (amino acid change F105L) with respect to the original
-\textit{mcr-5.1} gene, which was designated \textit{mcr-5.4} by NCBI (accession
-no. MK965519). 
-This sample was selected for LRMseq; the DNA libraries were prepared using the Rapid PCR Barcoding Kit (SQK-RPB004) from Oxford Nanopore Technologies (ONT) and
-loaded into a FLO-MIN106 R9.4 flow cell. 
-The run was performed on a MinION device (ONT) and it proceeded for 24 h. 
-The data were basecalled using Albacore (https://github.com/rrwick/Basecallingcomparison) and further processed with Poretools \citep{loman_poretools_2014} and Porechop (https://github.com/rrwick/Porechop). 
-Trimmed reads from SRMseq and LRMseq were used for hybrid-assembly analysis by
-metaSPAdes-3.13.0 \citep{nurk_metaspades_2017}. 
-After a BLAST search using the hybrid contig containing the \textit{mcr-5.4} gene, the plasmid pSE13-SA01718 (accession no. KY807921.1) was listed as one of the hits with the highest identity and we used it as a reference for genome comparison with the Artemis Comparison Tool (ACT) v1.0
-\citep{carver_act_2005}. 
-The \textit{mcr-5.4}-carrying contig from the hybrid assembly was annotated using PATRIC v3.5.27 \citep{wattam_improvements_2017}. 
-Trimmed reads from SRMseq were used to investigate the bacterial composition by OneCodex \citep{minot_one_2015}. 
-Finally, in order to predict the bacterial host of the \textit{mcr-5.4} gene, a contig-binning analysis of the hybrid-assembled metagenome was performed using MaxBin2 v2.2.4 (https://sourceforge.net/projects/maxbin2/), probability
-threshold 0.9 and minimum contig length 1000 bp. 
-The resulting bin containing the \textit{mcr-5.4} gene was selected for taxonomy classification using Kraken2 (https://github.com/DerrickWood/kraken2)
-(minikraken2 DB v1).
+The importance of distinguishing strains within the same microbial species has been proven critical for identifying chains of transmission and understanding pathogen evolution, as recently illustrated by the SARS-CoV-2 pandemic \cite{black_ten_2020, deng_genomic_2020}. The advent and widespread adoption of high-throughput sequencing allowed leveraging genomic information for this purpose \cite{black_ten_2020, deng_genomic_2020}. One of the most common approaches in bacterial typing is \ac{GbG} methods, which extend the concept of \ac{MLST} to include all genes present in the core genome of a given species (\ac{cgMLST}) or, trying to cover a significant fraction of a species’ pan-genome, in whole genome (\ac{wgMLST}) \cite{maiden_mlst_2013}. Current software approaches implementing these \ac{wg/cgMLST} typing methods suffer from standardization issues when comparing results between different tools and between different laboratories or users \cite{uelze_typing_2020}.
 
-\begin{figure*}[h!]
-\centering
-\includegraphics[width=\textwidth]{figures/chapter 3/dkz363f1.jpeg}
-\caption{Comparative analysis of the genetic environment of \textit{mcr-5} between the reference plasmid pSE13-SA01718 (accession no. KY807921.1) and the annotated hybrid metagenome contig (accession no. MK965519). The contig carrying the \textit{mcr-5.4} gene consists of the following putative gene products: 7-carboxy-7-deazaguanine synthase (queE), 7-cyano-7-deazaguanine synthase (queC), glycine cleavage system transcriptional antiactivator GcvR (gcvR), thiol peroxidase (tpx), sulphurtransferase TusA family protein (sirA), hypothetical protein (hp), truncated MFS-type transporter ($\Delta$msf), lipid A phosphoethanolamine transferase (\textit{mcr-5.4}), ChrB domain protein (chrB), transposon resolvase (tnpR) and truncated transposon transposase ($\Delta$tnpA). Areas with 98\% identity between sequences are represented in light grey. Arrows indicate the position and direction of the genes. The transposon Tn6452 sequence in the reference plasmid pSE13-SA01718 is bounded by inverted repeats: IRL and IRR.}
-\label{fig:chap3_figure1}
-\end{figure*}
+We have previously developed a suite, chewBBACA \cite{silva_chewbbaca_2018}, allowing the creation of \ac{GbG} schemas and performing allele calls on assembled draft genomes. Since chewBBACA was designed to perform local analysis to address concerns over data privacy and scalability, it has the drawback that small adjustments in parameters may lead to inconsistencies between runs. Moreover, the software allows users to create their own \ac{wg/cgMLST} schemas but currently no tool is available for the easy sharing of schemas, which potentially hampers long-term and multinational studies, as well as the reusability of already published schemas \cite{isidro_virulence_2020, llarena_innuendo_2018}.
 
+There are well-established websites for performing \ac{GbG} analyses, such as PubMLST (\url{https://pubmlst.org/}) \cite{jolley_bigsdb_2010} and EnteroBase (\url{https://enterobase.warwick.ac.uk/}) \cite{zhou_enterobase_2020}, that centralize analysis and hosting of public and private schemas. chewBBACA does not depend on a web server and by enabling local analyses and schema creation allows for scalable and private analyses of genomes, but the existing implementation lacked an easy way to share schemas and the associated allelic information, which is possible in a centralized solution.
 
-SRMseq showed the \textit{mcr-5.4} gene detected in a contig of 2113 bp flanked by two truncated protein-coding sequences (CDSs), encoding the ChrB domain protein (involved in chromate resistance) and the Major Facilitator Superfamily (MFS) transporter.
-The hybrid-assembly analysis resulted in a contig of 8456 bp consisting of nine CDSs and four truncated CDSs (Figure \ref{fig:chap3_figure1}).
-Comparative analysis of the genetic environment of the \textit{mcr-5} gene, between the annotated hybrid metagenome contig and the reference plasmid pSE13-SA01718, showed a region of 4670 bp with 98\% identity, corresponding to the backbone of the Tn6452 transposon (Figure \ref{fig:chap3_figure1}). 
-We observed three truncated CDSs for the MFS-type transporter in our contig instead of two as previously described in the reference sequence pSE13-SA01718. 
-These differences did not appear to be due to sequencing errors when we checked the sequence MK965519, (i) using pilon (https://github.com/broadinstitute/pilon) to correct for errors in short-read sequencing data and (ii) using CLC Genomic Workbench to update the hybrid contig by mapping both long and short reads against the hybrid contig.
-We also observed a region of 3786 bp, with no identity either with the reference plasmid pSE13-SA01718 (Figure \ref{fig:chap3_figure1}) or with any other sequence in the GenBank database.
+In order to allow users to share \ac{GbG} typing schemas and for a common allelic nomenclature to be maintained \cite{carrico_bioinformatics_2013}, we developed \ac{Chewie-NS}, a nomenclature server based on the TypOn ontology \cite{vaz_typon_2014} offering a web interface that also integrates directly with local instances of chewBBACA and can be programmatically accessed by external resources. \ac{Chewie-NS} aims to complement the private local analysis of strains by also allowing the simple communication of results while providing an interface for users to easily explore the allelic diversity within species. The importance of the latter is becoming increasingly clear with the recognition that bacterial phenotypes can be profoundly altered by allelic variants \cite{van_der_linden_heterogeneity_2020, uniprot_consortium_uniprot_2019}. Other publicly available web services require submission of raw data, something that may raise privacy and ownership concerns, while our approach of enabling local analyses is more flexible and scalable, and respects data privacy concerns. Current \ac{wg/cgMLST} typing methods suffer from standardization difficulties or issues that manifest not only when trying to reconcile results from different tools, but also when the same tool is run at different times with small adjustments in parameter values or database modifications that may lead to inconsistencies. This is an even more complex problem than it was for classical \ac{MLST} methods \cite{page_comparison_2017}. Having a repository of schemas, their associated parameters and the allelic diversity identified will allow the consistent use of gene-by-gene typing schemas by different groups and to build upon the results of different studies to monitor microbial populations and study outbreaks.
 
-Species previously described to harbour an \textit{mcr-5} gene are \textit{Escherichia coli}, \textit{Pseudomonas aeruginosa}, \textit{Salmonella enterica}, \textit{Aeromonas hydrophila} and \textit{Cupriavidus gilardii}. 
-The bacterial composition analysis of the water sample using SRMseq showed the presence of \textit{Pseudomonas} spp. (relative abundance: 0.004\%), \textit{Cupriavidus} spp. (relative abundance: 0.001\%) and \textit{Aeromonas} spp. (relative abundance: 0.0003\%). 
-The binning analysis produced a bin positive for the \textit{mcr-5.4} gene consisting of 1336 contigs (genome size: 5 175 285 bp; genome completeness: 68.2\%). 
-This bin was taxonomically classified as bacteria (70.73\%) and proteobacteria (64.90\%), and from this the most abundant class was \textit{Gammaproteobacteria} (37.20\%) (order \textit{Pseudomonadales}, 15.57\%), followed by \textit{Betaproteobacteria} (14.90\%) (order \textit{Burkholderiales}, 10.63\%).
+\ac{Chewie-NS} is available at \url{https://chewbbaca.online} and its source code is available at \url{https://github.com/B-UMMI/Chewie-NS}. Detailed documentation, including a descriptive tutorial on how to deploy and use the server, can be found at \url{https://chewie-ns.readthedocs.io}. Additionally, a tutorial version of the server aiming at familiarizing users with the integration between the chewBBACA suite and \ac{Chewie-NS}, which allows users to perform mock submissions of schemas and synchronizations without the need to register and with a much reduced database, is available at \url{https://tutorial.chewbbaca.online/}.
 
-Colistin resistance determinants (\textit{mcr}) have been rarely reported in water environments; \textit{mcr-1} has been detected in both hospital sewage and in environmental water streams and \textit{mcr-3} in environmental water \citep{zhao_incp_2017, tuo_prevalence_2018}.
-To the best of our knowledge, this is the first-time description of an \textit{mcr-5} gene in an indoor and healthcare water environment. 
-Despite the fact that the comparative analysis showed the hybrid contig covering a large region of Tn6452, neither the left inverted repeat (IRL) nor the right inverted repeat (IRR) have been found. 
-In addition, the lack of the right transposon region does not allow us to search for other possible inverted repeats. 
-Thus, it is not possible to conclude whether the described \textit{mcr-5.4} gene is transferable or not. 
-Taxonomic analysis suggested the order of \textit{Pseudomonadales} as the most probable host of the \textit{mcr-5.4} gene in the water sample. 
-Further studies are needed to determine the frequency of this gene in hospital water and other water environments and to evaluate the potential risks for patients and healthcare workers.
+\section{Database Creation} \label{sec:ch3_database_creation}
 
-\section{Acknowledgements}
+\subsection{Backend} \label{ssec:ch3_database_creation_backend}
 
-We would like to thank Erwin C. Raangs for technical assistance.
+The architecture of \ac{Chewie-NS} is shown schematically in \ref{fig}. The backend component of \ac{Chewie-NS} makes use of the Virtuoso triple store (v. 7.2.6) (\url{https://virtuoso.openlinksw.com/}). This database management system allows the integration of a \ac{RDF} to implement the TypOn ontology \cite{vaz_typon_2014} structure to store schema data. Additionally, a PostgreSQL database (v. 10) (\url{https://www.postgresql.org/}) was adopted for user management. These databases are accessible through a Python 3 \ac{REST} \ac{API} developed in the Flask (v. 1.1.0) (\url{https://flask.palletsprojects.com/en/1.1.x/}) web development microframework, which allows requests through defined endpoints and facilitates programmatic access to the nomenclature server. Requests and \ac{HTTPS} connections are handled by a web server, NGINX (v. 1.17) (\url{https://www.nginx.com/}), that communicates with Gunicorn (v. 20.0.4) (\url{https://gunicorn.org/}), a \ac{WSGI} application server capable of running multiple processes of the web application and distributing incoming requests to ensure scalability and load balancing. A queueing system was implemented to manage all tasks with possible concurrent user access through Redis (v. 5.0.6) (\url{https://redis.io/}) and Celery (v. 4.4.0rc2) (\url{https://docs.celeryproject.org/en/stable/getting-started/introduction.html}).
 
-\section{Funding}
+\subsection{Frontend} \label{ssec:ch3_database_creation_frontend}
 
-This project has received funding from the European Union’s Horizon
-2020 research and innovation programme under the Marie SklodowskaCurie grant agreement 713660 (MSCA-COFUND-2015-DP ‘Pronkjewail’),
-which includes in-kind contributions by commercial partners. None of
-the commercial partners had any influence on interpretation of reviewed
-data and conclusions drawn, or on drafting of the manuscript. This work
-was partly supported by the INTERREG VA (202085)-funded project
-EurHealth-1Health, part of a Dutch–German cross-border network supported by the European Commission, the Dutch Ministry of Health,
-Welfare and Sport (VWS), the Ministry of Economy, Innovation,
-Digitalization and Energy of the German Federal State of North RhineWestphalia and the German Federal State of Lower Saxony.
+The \ac{UI} for \ac{Chewie-NS} was built with the JavaScript frameworks React (v. 16.12.0) (\url{https://reactjs.org/}) and Material-UI (v. 4.9.14) (\url{https://material-ui.com/}). The \ac{UI} provides a list of available schemas and displays relevant schema and locus statistics in a responsive and interactive manner. Access to daily updated compressed files of the schemas for download and local use is also provided. All interactive charts were rendered with the graph visualization library Plotly.js (v. 1.52.1) (\url{https://plotly.com/javascript/}) through its React component, react-plotly (v.2.4.0) (\url{https://plotly.com/javascript/react/}).
 
-\section{Transparency declarations}
+\subsection{Chewie-NS usage} \label{ssec:ch3_database_creation_usage}
 
-None to declare.
+\textit{Local installation}. Deployment of local instances can be easily achieved through Docker Compose (\url{https://www.docker.com/}) (available at \url{https://github.com/B-UMMI/Chewie-NS}). The use of a container orchestrator (\url{https://docs.docker.com/compose/}) supports the easy deployment of local instances independently of the hardware available, allowing the creation of private trusted databases if public access is not possible. Instructions on how to achieve this can be found at \url{https://github.com/B-UMMI/Chewie-NS}. This can be particularly important for national public health institutions in the context of restrictive or ambiguous data sharing laws because it allows stricter user access control.
+
+\textit{Application programming interface}. A \ac{REST}ful \ac{API} also referred to as a \ac{REST}ful web service or \ac{REST} \ac{API}, i.e. based on representational state transfer (REST), is available. The user can interact with \ac{Chewie-NS}’s \ac{API} through the web interface, by clicking on the ‘API’ button on the menu. This will open a page with Swagger \ac{UI} (\url{https://swagger.io/tools/swagger-ui/}), a user-friendly tool for the user to interact directly with the \ac{REST} \ac{API}. Programmatic access is also possible through command line applications such as curl or tools such as Postman (\url{https://www.postman.com/}). \ac{Chewie-NS}’s \ac{REST} \ac{API} allows interaction with the PostgreSQL database to manage user registrations on local instances. Through the \ac{API}, users are also able to query the Virtuoso database to download compressed schemas, search for specific alleles and query data about specific species, loci or alleles.
+
+\subsection{Web interface} \label{ssec:ch3_database_creation_interface}
+
+\textit{Schemas overview}. A table summarizes the species and number of schemas available for each species in \ac{Chewie-NS}. Selecting a species leads to another table (\ref{fig2}) with a list of relevant information about each available schema, namely the schema internal identifier, the user provided schema name, the username of the creator, the number of loci in the schema, the number of alleles, the software and version used to create the schema, the date of creation, the date of the last modification, the BLAST \cite{altschul_basic_1990} score ratio selected, the translation table used, the minimum locus length and size threshold. In the table, there is a link to download the compressed file of the schema and the training file used to create it, both necessary to use the schema locally with the chewBBACA suite. Each table entry has also a link to a page containing more details about the schema. Below this table, an interactive bar chart displays the number of alleles per locus for each schema. The user can zoom in on the chart to obtain a better view of a given set of loci and can click on a bar to go to a page with more details on that particular locus.
+
+\textit{Schema details}. The schema evaluation and annotation page contains a description of the schema provided by the schema creator. During the schema upload, this information can be provided in a file using markdown, a simple plain-text-formatting syntax that allows the easy integration of hyperlinks, tables and images, allowing for a rich use of data for the description of the schema. Below this table are four charts in different tabs. Two charts (\ref{fig3}) display characteristics of the schema: the distribution of the number of alleles per locus and of locus size. Two interactive charts represent for each locus its size summary statistics versus the number of alleles, and another a box plot of the size distribution of each locus. In all charts, the user can zoom in on particular regions for more detailed inspection and, on the latter two, clicking on the chart element opens a page with more information on that particular locus. Below the charts is a table of all the loci in the schema, including relevant information for each locus. This table, as all other tables of \ac{Chewie-NS}, is searchable, facilitating finding loci with particular characteristics (\ref{fig4}). Similarly to other tables, the table can also be exported in comma-separated values format.
+
+\textit{Locus details}. Already in the schema evaluation and annotation page is shown most of the information of each locus. This includes the internal locus identification and label, the automated annotation created by chewBBACA including a link to the relevant UniProt \cite{uniprot_consortium_uniprot_2019} page, a user locus name and user custom annotation (supporting markdown syntax), number of alleles and allele size information. The possibility of schema creators offering their own annotation allows for domain-specific information to be added to the schema, including potentially richer complementary data and links to relevant external resources. Two charts are offered, one summarizing the size distribution of the alleles (frequency of binned sizes) and the other representing the sizes of each allele. Direct links to perform \ac{BLAST} searches using allele 1 of that locus (\ac{BLASTn} and \ac{BLASTx}) are available at the bottom of the page, allowing the user to check for similarities that could offer further insights into the origin or likely function of the protein potentially encoded by the locus. A multi-fasta file containing the alleles of the locus can be downloaded by the users from this page. On a different page, a simple query feature allows finding exact matches to specific sequences stored in any of \ac{Chewie-NS}’s databases, returning the loci and schemas where the sequence is found.
+
+\textit{Integration with the chewBBACA suite and use of the API}. By taking advantage of \ac{Chewie-NS}’s \ac{API}, chewBBACA is capable of handling not only the schema creation, but also its upload, synchronization and download. Users of chewBBACA registered in \ac{Chewie-NS} and with contributor privileges will be able to automatically upload a novel schema, making it available in \ac{Chewie-NS}. Any authorized registered user can also contribute novel alleles identified in local analyses to \ac{Chewie-NS}, contributing to the incremental development of the schema. This involves only allele information without the need to share a complete allelic profile with \ac{Chewie-NS}. On the other hand, one does not have to be registered to download any of the data stored in \ac{Chewie-NS},including the compressed schemas or the novel alleles submitted to the \ac{Chewie-NS} database and that were not present on the compressed file to update the local schema. Detailed instructions on the chewBBACA commands to achieve this can be found at \url{https://chewie-ns.readthedocs.io/en/latest/user/chewbbaca.html}.
+
+If a user creates a schema through a software other than chewBBACA, the \ac{API} can still be used to submit this new schema to \ac{Chewie-NS} or to add novel alleles to non-chewBBACA schemas. A user would have to register with \ac{Chewie-NS} and would have to take on the responsibility for making the correct \ac{API} calls for schema submission. Furthermore, it would be up to each user submitting new alleles to guarantee the consistency of these novel alleles with the schema originally deposited. These functions are handled transparently by chewBBACA in its interaction with \ac{Chewie-NS}. Anyone can use the \ac{API} to download any of the schemas deposited in \ac{Chewie-NS} to be run locally with chewBBACA or any other allele-calling algorithm. These multiple ways in which a user can interact with \ac{Chewie-NS} allows tailoring the sharing of information to user preferences or to restrictions imposed on particular users.
+
+In order to facilitate familiarization of the interaction between chewBBACA and \ac{Chewie-NS}, a tutorial website was created (\url{https://tutorial.chewbbaca.online/}), together with step-by-step instructions on how to perform mock operations with a small size schema (\url{https://chewie-ns.readthedocs.io/en/latest/user/tutorial.html}). This allows users to perform submissions and synchronization of schemas without the need for registering. The schemas submitted to the tutorial site are not permanent and are removed automatically 48 h after creation.
+
+For reproducibility and traceability purposes, a feature to retrieve database snapshots at specific dates is available, allowing a user to be able to recover the exact schema, as it was available on a given date. Full documentation of the schemas allows for traceability, which is critical in public health applications. These various options will continue to allow data privacy, while striving for a common nomenclature. The detailed parameterization associated with each schema created with chewBBACA and the consistency checks implemented in \ac{Chewie-NS} mean that no human curation is necessary after the schema creation step, contributing to the rapid update of the database and exchange of information. However, although \ac{Chewie-NS} can be used to store and retrieve information of schemas not created with chewBBACA, it does not currently automatically guarantee the consistency of newly submitted alleles since each allele-calling algorithm will have specific parametrization requirements. Nevertheless, these can be implemented in the future as other allele-calling algorithms make use of the \ac{Chewie-NS} platform.
+
+\section{Discussion} \label{sec:ch3_discussion}
+
+\ac{Chewie-NS} accomplishes four important goals. First, it stores all the information required to define a chewBBACA schema, facilitating accessibility of schemas so that different schemas can be easily compared and evaluated. Second, it maintains a public compendium of the variability in each locus. Since chewBBACA loci are \ac{ORFs}, this will allow monitoring the variability of the proteins potentially encoded by these loci. This is important when studying microbial pathogens because small variations in sequence can lead to dramatic changes in virulence \cite{li_genome-wide_2019} or antimicrobial resistance \cite{van_der_linden_heterogeneity_2020}. On the other hand, allelic diversity can also be indicative of stabilizing or diversifying selective pressures, which in turn can be leveraged to obtain insights into pathogen evolution or interaction with the host \cite{yamaguchi_identification_2019}. Allelic diversity is also important in reverse vaccinology \cite{moxon_editorial_2019} and to monitor the continued potential efficacy of some available vaccines \cite{maiden_impact_2018}. Third, through its integration with chewBBACA, it offers a simplified way for the user to control the flow of information between the local instance and \ac{Chewie-NS}. This is important to keep the local instance of chewBBACA updated with the current common nomenclature stored in \ac{Chewie-NS} databases and to contribute new alleles to the common databases, but it also allows for limited sharing of data to comply with any regulations the user may be operating under. Finally, the proposed workflow hopes to stimulate and facilitate data sharing between users using the same schemas, allowing for a faster detection of strain similarity, therefore contributing for genomic epidemiology studies and also faster outbreak detection and investigation by expediting strain comparison between different laboratories or institutions. Although the current integration of chewBBACA with \ac{Chewie-NS} facilitates the user interaction with \ac{Chewie-NS} when using this allele-calling software, the \ac{API} can be exploited by other allele-calling software to also interact directly with \ac{Chewie-NS}, allowing an easier submission of schemas and of new alleles to schemas not created with chewBBACA. 
+
+The definition of a \ac{wg/cgMLST} schema involves not only the choice of the target loci and of what constitutes a locus [for instance, an \ac{ORF} as defined by Prodigal \cite{hyatt_prodigal_2010} in the case of chewBBACA, or a fragment of \ac{DNA} between two primers in traditional \ac{MLST}], but also the algorithm and parameters of the allele-calling software. If one uses the same set of target loci defined in the same way, but a different allele-calling software, one cannot guarantee that the alleles called for a given isolate would be the same as with another allele-calling software, a problem that can potentially become all the more acute with the identification of novel alleles. Even when using the same allele-calling software, if the parameters used are different, the alleles identified in a given isolate may also be different. Moreover, the addition of novel alleles to a schema that do not conform with the parameters defined initially may have hard to anticipate consequences on the subsequent allele-calling processes. Upstream of this, we would like to stress the importance of the use of shared assembly pipelines, to ensure that the deposited allele sequences are determined based on standardized procedures, as it has been shown that different assemblers can result in different variants in the assembly \cite{firtina_apollo_2020} and that this variability can introduce artificial allelic variability, even when using the same schema and allele-calling software.
+
+The possibility of setting up local instances of \ac{Chewie-NS} in a simplified way using Docker Compose facilitates creating private services that can cater to trusted groups of users and allow the implementation of \ac{Chewie-NS} in institutions operating under strict privacy rules. In a public health context, this can also be used to deploy services allowing an easier communication between different agencies operating under distinct mandates.
+
+The databases currently available in the public instance of \ac{Chewie-NS} (\url{https://chewbbaca.online/}) include schemas developed within the INNUENDO project \cite{llarena_innuendo_2018} for \textit{Salmonella enterica}, \textit{Campylobacter jejuni}, \textit{Escherichia coli} and \textit{Yersinia enterocolitica}, a schema developed for \textit{Arcobacter butzleri} \cite{isidro_virulence_2020}, an adaptation of a schema generated using the Ridom SeqSphere+ software for \textit{Acinetobacter baumannii} \cite{higgins_development_2017} and in-house developed schemas for \textit{Streptococcus agalactiae} and \textit{Streptococcus pyogenes}. However, we expect that users of chewBBACA and of other allele-calling software will increasingly contribute schemas for these as well as additional species to be deposited in \ac{Chewie-NS}.
+
+\section{Data Availability} \label{sec:ch3_data_availability}
+
+\ac{Chewie-NS} is freely accessible at \url{https://chewbbaca.online/}. Its source code is hosted at \url{https://github.com/B-UMMI/Chewie-NS} together with instructions on how to deploy it locally using Docker Compose and the documentation can be found at \url{https://chewie-ns.readthedocs.io/}. A tutorial version of the server, which allows users to perform mock submissions of schemas and synchronizations with a much reduced database, can be accessed at \url{https://tutorial.chewbbaca.online/}.
+
+\section{Acknowledgements} \label{sec:ch3_data_acknowledgements}
+
+The authors would like to thank Catarina Inês Mendes for fruitful discussions and for her multiple design suggestions and Ana Correia for her guidance in solving issues with the \ac{Chewie-NS} implementation.
+
+\section{Funding} \label{sec:ch3_data_funding}
+
+Fundos Europeus Estruturais e de Investimento (FEEI) and Fundação para a Ciência e a Tecnologia (\ac{FCT}) [LISBOA-01-0145-FEDER-016417]; FCT and FEDER [01/SAICT/2016 no. 022153]; FCT [PTDC/CCI-BIO/29676/2017]. Funding for open access charge: FEEI and FCT [LISBOA-01-0145-FEDER-016417]. \\
+Conflict of interest statement. None declared.
