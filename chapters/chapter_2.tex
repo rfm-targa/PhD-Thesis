@@ -10,14 +10,14 @@ R. Mamede, P. Vila-Cerqueira, J. A. Carriço, M. Ramirez. chewBBACA 3: lowering 
 
 The supplementary information referred to throughout the text can be consulted in this chapter before the References section. 
 
-As mentioned in Chapter \ref{ch:introduction}, section \ref{sssec:_intro_shotgun_metagenomics}, \ac{SMg} approaches have been a growing interest to deliver clinically relevant results without \textit{a priori} knowledge of what to expect from a particular clinical sample or patient. 
+As mentioned in Chapter \ref{ch:introduction}, section \ref{sssec:_intro_shotgun_metagenomics}, SMg approaches have been a growing interest to deliver clinically relevant results without \textit{a priori} knowledge of what to expect from a particular clinical sample or patient. 
 The capacity to detect all potential pathogens in a sample has great potential utility in the diagnosis of infectious disease. 
 However, it is unclear how the variety of available methods impacts the end results.
 
-In this publication, \ac{SMg} was applied to nine body fluid samples and one tissue sample from patients at the University Medical Center Groningen with varying degrees of contamination: one sample from peritoneal fluid, five from pus, two from synovial fluid of knees with a prosthesis, one from sputum and one from a bone biopsy. The results of microbial identification through whole genome sequencing (\ac{WGS}) and \ac{SMg} were compared to standard culture-based microbiological methods. 
+In this publication, SMg was applied to nine body fluid samples and one tissue sample from patients at the University Medical Center Groningen with varying degrees of contamination: one sample from peritoneal fluid, five from pus, two from synovial fluid of knees with a prosthesis, one from sputum and one from a bone biopsy. The results of microbial identification through whole genome sequencing (\ac{WGS}) and SMg were compared to standard culture-based microbiological methods. 
 In order to evaluate and compare the accuracy and reliability of the bioinformatics analyses in providing the closest results to culture and \ac{WGS} of any cultured isolates, three different bioinformatic pipelines (two commercially and one freely available) were used. Most pathogens identified by culture were also identified through metagenomics, but substantial differences were noted between the taxonomic classification tools. 
 
-My contribution to this publication included the bioinformatics analysis of all the samples using a Unix-based approach. I performed quality assessment and quality control of the \ac{WGS} and \ac{SMg} data, the removal of host sequencing from the samples, and the taxonomic identification of the remaining reads in each sample through 3 different methods: MetaPhlan2, Kraken and MIDAS. Gene detection directly from the reads for bacterial typing was also performed using metaMLST, ReMatCh, Bowtie2 and Samtools. Finally, the reads were assembled using the SPAdes genome assembler, with and without metagenomic mode according to the sample being processed. 
+My contribution to this publication included the bioinformatics analysis of all the samples using a Unix-based approach. I performed quality assessment and quality control of the \ac{WGS} and SMg data, the removal of host sequencing from the samples, and the taxonomic identification of the remaining reads in each sample through 3 different methods: MetaPhlan2, Kraken and MIDAS. Gene detection directly from the reads for bacterial typing was also performed using metaMLST, ReMatCh, Bowtie2 and Samtools. Finally, the reads were assembled using the SPAdes genome assembler, with and without metagenomic mode according to the sample being processed. 
 
 \cleardoublepage 
 
@@ -244,7 +244,7 @@ All authors contributed to the design of the tool. RM implemented, tested, and b
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 2/FigureS1.pdf}
-    \caption{\ac{PLOT5}, \ac{PLOT3} and \ac{LOTSC} classifications. The \ac{PLOT3}, \ac{PLOT5} and \ac{LOTSC} classifications are related to the position of \ac{CDSs} in the genomic contigs. \usepackage{PLOT5} and \ac{PLOT3} - a CDS is classified as \ac{PLOT5} or \ac{PLOT3} if it is close to the contig 5’- or 3’-end and if the unaligned portion of the matched representative allele exceeds the contig end. \ac{LOTSC} - a \ac{CDS} is classified as \ac{LOTSC} if the matched representative allele is bigger than the contig containing the \ac{CDS}.}
+    \caption{\ac{PLOT5}, \ac{PLOT3} and \ac{LOTSC} classifications. The \ac{PLOT3}, \ac{PLOT5} and \ac{LOTSC} classifications are related to the position of \ac{CDSs} in the genomic contigs. \ac{PLOT5} and \ac{PLOT3} - a CDS is classified as \ac{PLOT5} or \ac{PLOT3} if it is close to the contig 5’- or 3’-end and if the unaligned portion of the matched representative allele exceeds the contig end. \ac{LOTSC} - a \ac{CDS} is classified as \ac{LOTSC} if the matched representative allele is bigger than the contig containing the \ac{CDS}.}
     \label{fig:chap2_figureS1}
 \end{figure*}
 
