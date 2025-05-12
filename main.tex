@@ -58,6 +58,8 @@
 \usepackage{float}
 \raggedbottom
 \usepackage{subcaption}
+\usepackage[usestackEOL]{stackengine}
+\strutlongstacks{T}
 \usepackage{eurosym}
 \usepackage{booktabs}
 \usepackage[T1]{fontenc}
@@ -85,7 +87,7 @@
 \usepackage{pifont}
 \usepackage[symbol]{footmisc}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
-
+\usepackage{threeparttable}
 
 %-----------------------------------------------------------------
 % Begin Document
@@ -291,7 +293,7 @@ The mould of your life is in your hands to break."} \\
 %------------------------------------------------------------------
 \newpage
 \thispagestyle{empty}
-\chapter{LMAS: Last Metagenomic Assembler Standing\label{ch:paper4}}
+\chapter{proBait: ...\label{ch:paper4}}
 
 \thispagestyle{empty}
 \clearpage \thispagestyle{empty}\mbox{}\clearpage
@@ -306,7 +308,6 @@ The mould of your life is in your hands to break."} \\
 %-----------------------------------------------------------------
 % Discussion
 %-----------------------------------------------------------------
-
 \newpage
 \thispagestyle{empty}
 \chapter{General Discussion \label{ch:discussion}}
@@ -336,11 +337,11 @@ The mould of your life is in your hands to break."} \\
 %-----------------------------------------------------------------
 % Appendix
 %-----------------------------------------------------------------
-%\appendix
 \newpage
 \chapter{Appendix}
-\includepdf[pages={1-}]{resources/papers/s41598-018-31873-w.pdf}
-\includepdf[pages={1-}]{resources/papers/dkz363.pdf}
+
+\includepdf[pages={1-}]{resources/papers/mamede2021.pdf}
+\includepdf[pages={1-}]{resources/papers/friaes2022.pdf}
 
 \end{sloppy}
 \end{document}
