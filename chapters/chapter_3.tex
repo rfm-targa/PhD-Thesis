@@ -5,13 +5,13 @@ This chapter is a reproduction of the following publication:
 
 R. Mamede, P. Vila-Cerqueira, M. Silva, J. A. Carriço, M. Ramirez, Chewie Nomenclature Server (Chewie-NS): a deployable nomenclature server for easy sharing of core and whole genome MLST schemas, Nucleic Acids Research, Volume 49, Database Issue, January 2021, D660-D666, DOI: \url{https://doi.org/10.1093/nar/gkaa889}
 
-As referenced in Chapter \ref{ch:introduction}, section \ref{ssec:_intro_survaillance}, sequencing has become a common tool in surveillance and infection prevention, when combined with epidemiological data, have undoubtedly provided immeasurable insights regarding the identification of potential sources of pathogenicity and transmission pathways. SMg approaches, just like in a clinical setting, have been a growing interest to deliver relevant results without a priori knowledge of what to expect from a particular environmental sample. 
+The adoption of \ac{wg/cgMLST} has been largely driven by the availability of web platforms that provide powerful analytic capabilities for \ac{wg/cgMLST} and centralize data analysis, ensuring the standardization of data analysis steps and the comparability of the results. These platforms store genomic and gene sequences, as well as associated metadata, and allow users to identify loci and alleles present in submitted strains based on comparisons against \ac{wg/cgMLST} schemas with well-defined allelic nomenclatures. These centralized services greatly promote interoperability and provide a richer context by allowing users to compare their strains against strains submitted by other users from diverse geographic locations. However, by requiring users to submit their data and centralizing data analysis, the services provided by these platforms may not be adequate for users operating under strict data privacy policies and may offer limited scalability, especially as data availability increases and when a timely analysis is desirable, such as in outbreak contexts.
 
-In this publication, second (see Chapter \ref{ch:introduction}, section \ref{ssec:_intro_2nd_gen_seq}) and third (see Chapter \ref{ch:introduction}, section \ref{ssec:_intro_3rd_gen_seq}) generation sequencing SMg has been applied to eight concentrated water samples collected the University Medical Center Groningen. In one of the samples, the novel detection of an \textit{mcr-5} gene, named \textit{mcr-5.4}, is reported. To the best of our knowledge, this is the first time that this gene, a mobile colistin resistance (\textit{mcr}) determinant, has been recovered from a hospital water environment, with analysis suggesting the order of \textit{Pseudomonadales} as the most probable host. 
+This chapter presents \ac{Chewie-NS}, a deployable \ac{wg/cgMLST} platform for easy sharing of \ac{wg/cgMLST} schemas that allows users to perform local and private analysis under a common allelic nomenclature. \ac{Chewie-NS} was designed to store \ac{wg/cgMLST} schemas for any bacterial species and to provide a simple user interface for users to intuitively explore the diversity of loci included in each schema. Schema and loci data can be easily browsed and downloaded through the website or \ac{API}. Additionally, the integration with chewBBACA, presented in Chapter \ref{ch:paper1}, allows users to quickly download schemas and start performing local and private analyzes based on the common allelic nomenclature managed by \ac{Chewie-NS}. By decentralizing data analysis, users operating under strict data privacy policies can still use \ac{Chewie-NS}' services, and data processing is not limited by the resources available to the remote server.
 
-My contribution to this publication included the bioinformatics analysis of the \textit{mcr-5.4} carrying sample thorough hybrid assembly using metaSPAdes. The resulting assembled contigs were binned with the MaxBin2 tool and the bin having the sequence carrying the gene of interest was taxonomically characterised with Kraken2.
+As first co-author, I was involved in the implementation of the backend component and of the modules that allow for the integration with chewBBACA. My contribution to the Frontend component consisted of the creation of Python scripts that generate pre-computed data to be displayed in the tables and plots of the website. The development of \ac{Chewie-NS} was in part guided by a proof of concept that had been previously implemented by members of the lab. I focused mainly on defining and creating the endpoints of the \ac{API} and on making sure that the \ac{API} provided the functionalities necessary for the integration with chewBBACA and the Frontend component. I developed the \ac{API} and the modules for integration with chewBBACA simultaneously to make sure that they were fully compatible. In addition, I had to fine-tune and optimize several \ac{API} endpoints, restructure the database used to store schema data and create custom Python scripts to guarantee that \ac{Chewie-NS} provided the desired functionalities at scale.
 
-\cleardoublepage 
+\newpage
 
 \begin{center}
 \large
@@ -60,7 +60,7 @@ The \ac{UI} for \ac{Chewie-NS} was built with the JavaScript frameworks React (v
 \begin{figure*}[h!]
     \centering
     \includegraphics[width=20cm]{figures/chapter 3/Figure1.pdf}
-    \caption{The Chewie-NS service: global overview of the technologies used and API connectivity.}
+    \caption[The Chewie-NS service: global overview of the technologies used and API connectivity.]{The Chewie-NS service: global overview of the technologies used and API connectivity.}
     \label{fig:chap3_figure1}
 \end{figure*}
 \vspace*{\fill}
@@ -79,7 +79,7 @@ The \ac{UI} for \ac{Chewie-NS} was built with the JavaScript frameworks React (v
 \begin{figure*}[h!]
     \centering
     \includegraphics[width=\textwidth]{figures/chapter 3/Figure2.pdf}
-    \caption{The schemas overview page of Chewie-NS.}
+    \caption[The schemas overview page of Chewie-NS.]{The schemas overview page of Chewie-NS.}
     \label{fig:chap3_figure2}
 \end{figure*}
 
@@ -90,7 +90,7 @@ The \ac{UI} for \ac{Chewie-NS} was built with the JavaScript frameworks React (v
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,height=0.80\textheight]{figures/chapter 3/Figure3.pdf}
-    \caption{Summary charts displaying relevant information on a given schema. \textbf{(A)} Distribution of loci by number of alleles. \textbf{(B)} Distribution of loci by allele mode size. \textbf{(C)} Representation of summary statistics (minimum allele size in blue, maximum allele size in orange and median allele size in green) for each locus. \textbf{(D)} Box plots of loci size distribution; the loci in the x-axis are ordered by locus ID.}\label{fig:chap3_figure3}
+    \caption[Summary charts displaying relevant information on a given schema.]{Summary charts displaying relevant information on a given schema. \textbf{(A)} Distribution of loci by number of alleles. \textbf{(B)} Distribution of loci by allele mode size. \textbf{(C)} Representation of summary statistics (minimum allele size in blue, maximum allele size in orange and median allele size in green) for each locus. \textbf{(D)} Box plots of loci size distribution; the loci in the x-axis are ordered by locus ID.}\label{fig:chap3_figure3}
 \end{figure*}
 
 \textit{Integration with the chewBBACA suite and use of the API}. By taking advantage of \ac{Chewie-NS}’s \ac{API}, chewBBACA is capable of handling not only the schema creation, but also its upload, synchronization and download. Users of chewBBACA registered in \ac{Chewie-NS} and with contributor privileges will be able to automatically upload a novel schema, making it available in \ac{Chewie-NS}. Any authorized registered user can also contribute novel alleles identified in local analyses to \ac{Chewie-NS}, contributing to the incremental development of the schema. This involves only allele information without the need to share a complete allelic profile with \ac{Chewie-NS}. On the other hand, one does not have to be registered to download any of the data stored in \ac{Chewie-NS},including the compressed schemas or the novel alleles submitted to the \ac{Chewie-NS} database and that were not present on the compressed file to update the local schema. Detailed instructions on the chewBBACA commands to achieve this can be found at \url{https://chewie-ns.readthedocs.io/en/latest/user/chewbbaca.html}.
@@ -104,7 +104,7 @@ For reproducibility and traceability purposes, a feature to retrieve database sn
 \begin{figure*}[h!]
     \centering
     \includegraphics[width=\textwidth]{figures/chapter 3/Figure4.pdf}
-    \caption{Schema loci table: search functionality. The figure presents the results of filtering for \textit{speB}, \textit{speI}, \textit{speJ}, \textit{speQ} and \textit{speR} in the \textit{user locus name} field of the \textit{Streptococcus pyogenes} schema 1. Note that the user provided annotations complement and correct some of the annotations retrieved from UniProt.}
+    \caption[Schema loci table: search functionality.]{Schema loci table: search functionality. The figure presents the results of filtering for \textit{speB}, \textit{speI}, \textit{speJ}, \textit{speQ} and \textit{speR} in the \textit{user locus name} field of the \textit{Streptococcus pyogenes} schema 1. Note that the user provided annotations complement and correct some of the annotations retrieved from UniProt.}
     \label{fig:chap3_figure4}
 \end{figure*}
 

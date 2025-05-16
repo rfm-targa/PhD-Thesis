@@ -27,7 +27,7 @@
 \fancyhf{}
 \fancyhead[RO]{\bfseries\rightmark}
 \fancyhead[LE]{\bfseries\leftmark}
-\setlength{\headheight}{15pt}
+\setlength{\headheight}{27.11798pt}
 \fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
@@ -54,7 +54,6 @@
 \usepackage{amsmath}
 \usepackage{bm}
 \usepackage[utf8]{inputenc}
-\usepackage{filecontents}
 \usepackage{float}
 \raggedbottom
 \usepackage{subcaption}
@@ -63,7 +62,6 @@
 \usepackage{eurosym}
 \usepackage{booktabs}
 \usepackage[T1]{fontenc}
-\usepackage[acronym]
 \makeatletter
 
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
@@ -117,8 +115,7 @@
 \vspace*{\fill}
 \begin{center}
     \vspace*{\fill}
-    As opiniões expressas nesta publicação são
-    da exclusiva responsabilidade do seu autor. \\
+    As opiniões expressas nesta publicação são da exclusiva responsabilidade do seu autor. \\
     
     \vspace*{2cm}
     
@@ -136,14 +133,10 @@
 \thispagestyle{empty}
 \vspace*{3cm}
 \begin{center}
-\emph{"The greatest adventure is what lies ahead.\\
-Today and tomorrow are yet to be said.\\
-The chances, the changes are all yours to make.\\
-The mould of your life is in your hands to break."} \\
+\emph{"We are all in the depths of a cave, chained by our ignorance, by our prejudices, and our weak senses reveal to us only shadows. If we try to see further, we are confused; we are unaccustomed. But we try. This is science."} \\
 \end{center} 
-\begin{flushright}-J. R. R. Tolkien, The Hobbit\end{flushright}
+\begin{flushright}- Carlo Rovelli, Reality Is Not What It Seems: The Journey to Quantum Gravity\end{flushright}
 \clearpage \thispagestyle{empty}\mbox{}\clearpage
-
 
 %-----------------------------------------------------------------
 % Acknowledgements
@@ -164,7 +157,7 @@ The mould of your life is in your hands to break."} \\
 \chapter*{Summary}
 \input{chapters/abstract.tex}
 
-\keywords{Clinical Microbiology, Genome Sequencing, Metagenomics, Reproducibility, Interoperability}
+\keywords{Public health, Bacterial genomics, Pathogen surveillance, Bacterial typing, wg/cgMLST}
 \clearpage \thispagestyle{empty}\mbox{}\clearpage
 
 %-----------------------------------------------------------------
@@ -176,7 +169,7 @@ The mould of your life is in your hands to break."} \\
 \chapter*{Resumo}
 \input{chapters/resumo.tex}
 
-\keywords{Microbiologia Clínica, Sequênciação genómica, Metagenómica, Reproducibilidade, Interoperabilidade}
+\keywords{Saúde pública, Genómica bacteriana, Vigilância de patogéneos, Tipagem bacteriana, wg/cgMLST}
 \clearpage \thispagestyle{empty}\mbox{}\clearpage
 
 %-----------------------------------------------------------------
@@ -207,18 +200,14 @@ The mould of your life is in your hands to break."} \\
 \addcontentsline{toc}{chapter}{Table of Contents}
 \renewcommand{\contentsname}{Table of Contents}
 \tableofcontents
-\clearpage \thispagestyle{empty}\mbox{}\clearpage
-\newpage
+\cleardoublepage
 \thispagestyle{plain}
 \listoftables
-\clearpage \thispagestyle{empty}\mbox{}\clearpage
-\newpage
+\cleardoublepage
 \thispagestyle{plain}
 \listoffigures
-%\clearpage \thispagestyle{empty}\mbox{}\clearpage
 
 \mainmatter
-%\pagenumbering{arabic} %numeros em numeração árabe
 
 %-----------------------------------------------------------------
 % Introduction
@@ -227,32 +216,18 @@ The mould of your life is in your hands to break."} \\
 \thispagestyle{empty}
 \chapter{General Introduction\label{ch:introduction}}
 \thispagestyle{empty}
-\clearpage \thispagestyle{empty}\mbox{}\clearpage
-\newpage
-\begin{refsection}
+\cleardoublepage
 \include{chapters/introduction}
-\newpage
-\section{References}
-\printbibliography[heading=none]
-\end{refsection}
 
-\part{Improving the gene-by-gene approach for whole- and core-genome MLST}
 %-----------------------------------------------------------------
 % Paper 1 - chewBBACA 3
 %------------------------------------------------------------------
 \newpage
 \thispagestyle{empty}
 \chapter{chewBBACA 3: lowering the barrier for scalable and detailed whole- and core-genome multilocus sequence typing\label{ch:paper1}}
-
 \thispagestyle{empty}
-\clearpage \thispagestyle{empty}\mbox{}\clearpage
-\newpage
-\begin{refsection}
+\cleardoublepage
 \include{chapters/chapter_2}
-\newpage
-\section{References}
-\printbibliography[heading=none]
-\end{refsection}
 
 %-----------------------------------------------------------------
 % Paper 2 - Chewie-NS
@@ -260,16 +235,9 @@ The mould of your life is in your hands to break."} \\
 \newpage
 \thispagestyle{empty}
 \chapter{Chewie Nomenclature Server (Chewie-NS): a deployable nomenclature server for easy sharing of core and whole genome MLST schemas\label{ch:paper2}}
-
 \thispagestyle{empty}
-\clearpage \thispagestyle{empty}\mbox{}\clearpage
-\newpage
-\begin{refsection}
+\cleardoublepage
 \include{chapters/chapter_3}
-\newpage
-\section{References}
-\printbibliography[heading=none]
-\end{refsection}
 
 %-----------------------------------------------------------------
 % Paper 3 - GAS wgMLST schema
@@ -277,33 +245,9 @@ The mould of your life is in your hands to break."} \\
 \newpage
 \thispagestyle{empty}
 \chapter{Annotated Whole-Genome Multilocus Sequence Typing Schema for Scalable High-Resolution Typing of \textit{Streptococcus pyogenes}\label{ch:paper3}}
-
 \thispagestyle{empty}
-\clearpage \thispagestyle{empty}\mbox{}\clearpage
-\newpage
-\begin{refsection}
+\cleardoublepage
 \include{chapters/chapter_4}
-\newpage
-\section{References}
-\printbibliography[heading=none]
-\end{refsection}
-
-%-----------------------------------------------------------------
-% Paper 4 - proBait
-%------------------------------------------------------------------
-\newpage
-\thispagestyle{empty}
-\chapter{proBait: ...\label{ch:paper4}}
-
-\thispagestyle{empty}
-\clearpage \thispagestyle{empty}\mbox{}\clearpage
-\newpage
-\begin{refsection}
-\include{chapters/chapter_5}
-\newpage
-\section{References}
-\printbibliography[heading=none]
-\end{refsection}
 
 %-----------------------------------------------------------------
 % Discussion
@@ -311,35 +255,21 @@ The mould of your life is in your hands to break."} \\
 \newpage
 \thispagestyle{empty}
 \chapter{General Discussion \label{ch:discussion}}
-
-\clearpage \thispagestyle{empty}\mbox{}\clearpage
-\begin{refsection}
+\thispagestyle{empty}
+\cleardoublepage
 \include{chapters/discussion}
-\newpage
-\section{References}
-\printbibliography[heading=none]
-\end{refsection}
 
 %-----------------------------------------------------------------
-% Conclusion
+% References
 %-----------------------------------------------------------------
-\newpage
-\chapter{Conclusion \label{ch:conclusion}}
-
-\clearpage \thispagestyle{empty}\mbox{}\clearpage
-\begin{conclusion}
-\include{chapters/conclusion}
-\newpage
-\section{References}
-\printbibliography[heading=none]
-\end{conclusion}
+\printbibliography
 
 %-----------------------------------------------------------------
 % Appendix
 %-----------------------------------------------------------------
 \newpage
 \chapter{Appendix}
-
+\cleardoublepage
 \includepdf[pages={1-}]{resources/papers/mamede2021.pdf}
 \includepdf[pages={1-}]{resources/papers/friaes2022.pdf}
 

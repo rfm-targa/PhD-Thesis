@@ -5,17 +5,15 @@ This chapter is a reproduction of the following publication:
 
 A. Friães, R. Mamede, M. Ferreira, J. Melo-Cristino, M. Ramirez, Annotated Whole-Genome Multilocus Sequence Typing Schema for Scalable High-Resolution Typing of \textit{Streptococcus pyogenes}, Journal of Clinical Microbiology, Volume 60, Issue 6, May 2022. DOI: \url{https://doi.org/10.1128/jcm.00315-22}
 
-The supplementary information referred throughout the text can be consulted in this chapter before the section of references. 
+The supplementary information referred to throughout the text can be consulted in this chapter before the reference section. 
 
-DENV represents a public health threat and economic burden in affected countries. The risk of exposure to DENV is increasing, not only because of travel to endemic regions but also due to the broader dissemination of the mosquito vector, making the burden of dengue very significant. 
+Schemas are the centerpiece of \ac{wg/cgMLST}. A \ac{wg/cgMLST} schema captures the diversity of a set of loci, generally identified in a single bacterial species, and, through allele calling, allows determining the allelic profiles of strains of interest. Creating a schema for \ac{wg/cgMLST} is not necessarily complex. Creating a well-curated \ac{wg/cgMLST} schema that captures the diversity of thousands of loci of a bacterial species is a different matter altogether. By well-curated, it means that all the loci or nearly all loci in the schema are \textit{bona fide} loci, not spurious loci, such as frameshifted, truncated, or gene fusions, which can be common issues plaguing \ac{wg/cgMLST} schemas. Limiting the set of loci included in the schemas to the core loci to define a \ac{cgMLST} schema is a way to minimize these issues. In theory, \ac{cgMLST} schemas should include loci present in all or nearly all strains of a dataset representative of the diversity of a species, corresponding to loci with more conserved sequences due to their important functions. Although \ac{cgMLST} schemas may provide robust results, in many cases, they do not capture a considerable fraction of the diversity of bacterial species, limiting their applicability, such as for high-resolution typing of closely related strains in outbreak contexts. \ac{wgMLST} schemas incorporate loci from the most variable fraction of the genome, usually termed the accessory genome, and provide greater resolution than \ac{cgMLST} schemas. However, generating a \ac{wgMLST} schema is a laborious process, as the dynamic nature of the accessory genome may hinder the identification of bona fide alleles and blur loci definitions.
 
-The availability of genomic data is key to understanding viral evolution and dynamics and supporting improved control strategies. Currently, the use of second-generation sequencing technologies, which can be applied both directly to patient samples (shotgun metagenomics) and to PCR-amplified viral sequences (amplicon sequencing), is the most informative approach to monitor viral dissemination and genetic diversity by providing, in a single methodological step, identification and characterization of the whole viral genome at the nucleotide level. This makes DENV identification and characterization through genomic analysis by developing software where the lessons learned in Chapters \ref{ch:paper1} and \ref{ch:paper2} are applied.
+This chapter describes the creation of a \ac{wgMLST} schema for high-resolution typing of \textit{Streptococcus pyogenes}. Following schema creation with chewBBACA based on a set of high-quality complete genomes, the schema was populated with the alleles identified in several datasets that represent the known diversity of \textit{S. pyogenes}. The schema was then extensively annotated through automatic methods, followed by curation by the first first co-author, an expert in the biology of \textit{S. pyogenes}, to validate the annotations and identify spurious loci. The schema was refined to remove or substitute spurious loci by valid alleles. The refinement resulted in a final \ac{wg/cgMLST} schema with 3,044 loci, which captures far more of the diversity of \textit{S. pyogenes} than the computed \ac{cgMLST} schemas, which include only between 763 and 1321 loci. Using a \ac{wgMLST} schema instead of hard-defined \ac{cgMLST} schemas allows adjusting \ac{cgMLST} analyses dynamically for each dataset, identifying more loci than conventional cgMLST and achieving performance comparable to \ac{SNP}-based methods.
 
-We have developed DEN-IM, a one-stop, user-friendly, containerised and reproducible workflow for the analysis of Dengue virus short-read sequencing data from both amplicon and shotgun metagenomics approaches. DEN-IM was designed to perform a comprehensive analysis in order to generate either assemblies or consensus of full DENV coding sequences and to identify their serotype and genotype. DEN-IM can also detect all four DENV serotypes and the respective genotypes present in a spiked sample, raising the possibility that DEN-IM can play a role in the identification of co-infection cases whose prevalence is increasingly perceived in highly endemic areas. 
+I participated in all steps related to schema development and dataset analyses to evaluate schema performance. Throughout the schema development process, I was responsible for selecting the genomes used for schema creation, annotating the schema loci based on multiple sources, and refining the schema based on the suggestions of the other first co-author. When necessary, I implemented custom scripts to annotate, refine, and evaluate schema performance. 
 
-My contribution to this publication included the design, implementation and optimisation of the DEN-IM workflow, including the creation of  the Docker containers for all dependencies. Two databases, one comprising 3830 DENV sequences for the retrieval of the reads of interest from the input samples, and a second comprising 161 sequences representing the genetic diversity of all DENV sero and genotypes were constructed by me.  Additionally, I've also written the manuscript.
-
-\cleardoublepage 
+\newpage 
 
 \begin{center}
 \large
@@ -98,7 +96,7 @@ Speciﬁc analyses can be performed through the identiﬁcation and creation of 
 \begin{figure*}[h!]
     \centering
     \includegraphics[width=\textwidth]{figures/chapter 4/Figure1.pdf}
-    \caption{Minimum-spanning tree generated with the goeBURST algorithm for the cgMLST-100 proﬁles of 265 \textit{S. pyogenes} isolates recovered in Portugal (see Data Set 1 in \cite{friaes_supplemental_2023}). The size of each node is proportional to the number of isolates with that particular cgMLST-100 proﬁle on a logarithmic scale. Nodes are colored according to \textit{emm} type. Link distances of $\geq1,000$ allelic differences are labeled (from a total of 1,230 compared loci).}
+    \caption[Minimum-spanning tree generated with the goeBURST algorithm for the cgMLST-100 proﬁles of 265 \textit{S. pyogenes} isolates recovered in Portugal.]{Minimum-spanning tree generated with the goeBURST algorithm for the cgMLST-100 proﬁles of 265 \textit{S. pyogenes} isolates recovered in Portugal (see Data Set 1 in \cite{friaes_supplemental_2023}). The size of each node is proportional to the number of isolates with that particular cgMLST-100 proﬁle on a logarithmic scale. Nodes are colored according to \textit{emm} type. Link distances of $\geq1,000$ allelic differences are labeled (from a total of 1,230 compared loci).}
     \label{fig:chap4_figure1}
 \end{figure*}
 
@@ -118,8 +116,8 @@ Allele call results identiﬁed 1,700 cgMLST-100 proﬁles. The resulting \ac{MS
 \vspace*{\fill}
 \begin{figure*}[h!]
     \centering
-    \includegraphics[height=0.9\textheight]{figures/chapter 4/Figure2.pdf}
-    \caption{Minimum-spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} proﬁles of 2,006 genetically diverse \textit{S. pyogenes} isolates recovered worldwide \cite{davies_atlas_2019} (see Data Set 2 in reference \cite{friaes_supplemental_2023}). The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} proﬁle on a logarithmic scale. Nodes are colored according to \textit{emm} type. Groups of clustered \textit{emm} types represented by >30 isolates are highlighted inside rectangles and labeled with the respective \textit{emm} types and PopPUNK phylogroup numbers (for simplicity, isolated nodes of \textit{emm} types 4, 22, 44, 65, 75, 77, 81, and 92 are not highlighted). A total of 763 core loci were compared.}
+    \includegraphics[height=0.85\textheight]{figures/chapter 4/Figure2.pdf}
+    \caption[Minimum-spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} proﬁles of 2,006 genetically diverse \textit{S. pyogenes} isolates recovered worldwide.]{Minimum-spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} proﬁles of 2,006 genetically diverse \textit{S. pyogenes} isolates recovered worldwide \cite{davies_atlas_2019} (see Data Set 2 in reference \cite{friaes_supplemental_2023}). The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} proﬁle on a logarithmic scale. Nodes are colored according to \textit{emm} type. Groups of clustered \textit{emm} types represented by >30 isolates are highlighted inside rectangles and labeled with the respective \textit{emm} types and PopPUNK phylogroup numbers (for simplicity, isolated nodes of \textit{emm} types 4, 22, 44, 65, 75, 77, 81, and 92 are not highlighted). A total of 763 core loci were compared.}
     \label{fig:chap4_figure2}
 \end{figure*}
 \vspace*{\fill}
@@ -129,7 +127,7 @@ Allele call results identiﬁed 1,700 cgMLST-100 proﬁles. The resulting \ac{MS
 \begin{figure*}[h!]
     \centering
     \includegraphics[width=\textwidth]{figures/chapter 4/Figure3.pdf}
-    \caption{Box-and-whisker plots for the pairwise distances of the assemblies from Data Set 2 \cite{davies_atlas_2019, friaes_supplemental_2023} included in each \textit{emm} type with $\geq10$ isolates (A) or in each PopPUNK phylogroup with $\geq10$ isolates (B). The distances were calculated based on the allele call results for the 763 cgMLST-100 loci of the 2,006 assemblies (interactive versions of these plots are available as supplemental material in reference \cite{friaes_supplemental_2023}).}
+    \caption[Box-and-whisker plots for the pairwise distances of the assemblies from Data Set 2 included in each \textit{emm} type with $\geq10$ isolates.]{Box-and-whisker plots for the pairwise distances of the assemblies from Data Set 2 \cite{davies_atlas_2019, friaes_supplemental_2023} included in each \textit{emm} type with $\geq10$ isolates (A) or in each PopPUNK phylogroup with $\geq10$ isolates (B). The distances were calculated based on the allele call results for the 763 cgMLST-100 loci of the 2,006 assemblies (interactive versions of these plots are available as supplemental material in reference \cite{friaes_supplemental_2023}).}
     \label{fig:chap4_figure3}
 \end{figure*}
 
@@ -140,7 +138,7 @@ The overall congruence between \ac{ST}s and \ac{MST} groups linked by up to 50 d
 \begin{figure*}[h!]
     \centering
     \includegraphics[width=\textwidth]{figures/chapter 4/Figure4.pdf}
-    \caption{Minimum-spanning tree generated with the goeBURST algorithm for the cgMLST-100 proﬁles of 119 outbreak \textit{S. pyogenes} isolates recovered in the United Kingdom \cite{coelho_genomic_2019} (see Data Set 3 in reference \cite{friaes_supplemental_2023}). The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} proﬁle on a logarithmic scale. The nodes are colored according to the \textit{emm} type, and the outer ring is colored according to the outbreak number. Link distances are labeled as the number of allelic differences between nodes (from a total of 1,263 compared loci).}
+    \caption[Minimum-spanning tree generated with the goeBURST algorithm for the cgMLST-100 proﬁles of 119 outbreak \textit{S. pyogenes} isolates recovered in the United Kingdom.]{Minimum-spanning tree generated with the goeBURST algorithm for the cgMLST-100 proﬁles of 119 outbreak \textit{S. pyogenes} isolates recovered in the United Kingdom \cite{coelho_genomic_2019} (see Data Set 3 in reference \cite{friaes_supplemental_2023}). The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} proﬁle on a logarithmic scale. The nodes are colored according to the \textit{emm} type, and the outer ring is colored according to the outbreak number. Link distances are labeled as the number of allelic differences between nodes (from a total of 1,263 compared loci).}
     \label{fig:chap4_figure4}
 \end{figure*}
 
@@ -155,7 +153,7 @@ The reduced costs of \ac{HTS} have facilitated a wider application of whole-geno
 \begin{figure*}[h!]
     \centering
     \includegraphics[width=\textwidth]{figures/chapter 4/Figure5.pdf}
-    \caption{Graph representation of the relationships between the cgMLST-100 proﬁles of 135 noninvasive \textit{emm}1 isolates recovered in the United Kingdom \cite{lynskey_emergence_2019} and reference strain MGAS5005 (see Data Set 4 in reference \cite{friaes_supplemental_2023}), depicting all links with $\leq19$ allelic differences (from a total of 1,404 compared loci). The size of each node is proportional to the number of isolates with that particular cgMLST-100 proﬁle on a logarithmic scale. Nodes are colored according to the M1 lineage, with MGAS5005 (reference genome for the $M1_{global}$ lineage) in green. Links that would not be present in the standard \ac{MST} are shown in green. Links shown in black represent the \ac{MST} links and may represent distances with >19 allelic differences.}
+    \caption[Graph representation of the relationships between the cgMLST-100 proﬁles of 135 noninvasive \textit{emm}1 isolates recovered in the United Kingdom and reference strain MGAS5005, depicting all links with $\leq19$ allelic differences (from a total of 1,404 compared loci).]{Graph representation of the relationships between the cgMLST-100 proﬁles of 135 noninvasive \textit{emm}1 isolates recovered in the United Kingdom \cite{lynskey_emergence_2019} and reference strain MGAS5005 (see Data Set 4 in reference \cite{friaes_supplemental_2023}), depicting all links with $\leq19$ allelic differences (from a total of 1,404 compared loci). The size of each node is proportional to the number of isolates with that particular cgMLST-100 proﬁle on a logarithmic scale. Nodes are colored according to the M1 lineage, with MGAS5005 (reference genome for the $M1_{global}$ lineage) in green. Links that would not be present in the standard \ac{MST} are shown in green. Links shown in black represent the \ac{MST} links and may represent distances with >19 allelic differences.}
     \label{fig:chap4_figure5}
 \end{figure*}
 
@@ -164,7 +162,7 @@ However, the use of a \ac{wgMLST} schema from which the \ac{cgMLST} loci are sel
 \begin{figure*}[h!]
     \centering
     \includegraphics[width=\textwidth]{figures/chapter 4/Figure6.pdf}
-    \caption{Graph representation of the relationships between the cgMLST-100 proﬁles of 201 \textit{emm}89 isolates (see Data Set 5 in reference \cite{friaes_supplemental_2023}) depicting all links with $\leq55$ allelic differences (from a total of 1,279 compared loci). The size of each node is proportional to the number of isolates with that particular cgMLST-100 proﬁle on a logarithmic scale. Nodes are colored according to the variant of the \textit{nga} promoter (P\textit{nga}). Links that would not be present in the standard \ac{MST} are shown in green. Links shown in black represent the \ac{MST} links and may represent distances with >55 allelic differences (labeled links).}
+    \caption[Graph representation of the relationships between the cgMLST-100 proﬁles of 201 \textit{emm}89 isolates, depicting all links with $\leq55$ allelic differences (from a total of 1,279 compared loci).]{Graph representation of the relationships between the cgMLST-100 proﬁles of 201 \textit{emm}89 isolates (see Data Set 5 in reference \cite{friaes_supplemental_2023}) depicting all links with $\leq55$ allelic differences (from a total of 1,279 compared loci). The size of each node is proportional to the number of isolates with that particular cgMLST-100 proﬁle on a logarithmic scale. Nodes are colored according to the variant of the \textit{nga} promoter (P\textit{nga}). Links that would not be present in the standard \ac{MST} are shown in green. Links shown in black represent the \ac{MST} links and may represent distances with >55 allelic differences (labeled links).}
     \label{fig:chap4_figure6}
 \end{figure*}
 
@@ -183,14 +181,14 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS1.pdf}
-    \caption{Number of loci with given number of alleles in the \ac{wgMLST} schema of \textit{S. pyogenes} (\url{https://chewbbaca.online/species/1/schemas/1}).}
+    \caption[Number of loci with given number of alleles in the wgMLST schema of \textit{S. pyogenes}.]{Number of loci with given number of alleles in the \ac{wgMLST} schema of \textit{S. pyogenes} (\url{https://chewbbaca.online/species/1/schemas/1}).}
     \label{fig:chap4_figureS1}
 \end{figure*}
 
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS2.pdf}
-    \caption{Number of \ac{DNA} alleles and protein variants of the 10 loci with the largest number of distinct alleles in the \textit{S. pyogenes} \ac{wgMLST} schema.}
+    \caption[Number of DNA alleles and protein variants of the 10 loci with the largest number of distinct alleles in the \textit{S. pyogenes} wgMLST schema.]{Number of \ac{DNA} alleles and protein variants of the 10 loci with the largest number of distinct alleles in the \textit{S. pyogenes} \ac{wgMLST} schema.}
     \label{fig:chap4_figureS2}
 \end{figure*}
 
@@ -198,7 +196,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS3.pdf}
-    \caption{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 265 \textit{S. pyogenes} isolates recovered in Portugal [Dataset 1 \cite{friaes_supplemental_2023}]. Nodes are colored according to \ac{ST}. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. Link distances $\geq45$ differences are labeled (from a total of 1,230 compared loci).}
+    \caption[Minimum spanning tree generated with the goeBURST algorithm for the cgMLST profiles of 265 \textit{S. pyogenes} isolates recovered in Portugal.]{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 265 \textit{S. pyogenes} isolates recovered in Portugal [Dataset 1 \cite{friaes_supplemental_2023}]. Nodes are colored according to \ac{ST}. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. Link distances $\geq45$ differences are labeled (from a total of 1,230 compared loci).}
     \label{fig:chap4_figureS3}
 \end{figure*}
 
@@ -206,7 +204,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS4.pdf}
-    \caption{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 265 \textit{S. pyogenes} isolates recovered in Portugal [Dataset 1 \cite{friaes_supplemental_2023}]. Nodes are colored according to \ac{PFGE} cluster. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. Link distances $\geq45$ differences are labeled (from a total of 1,230 compared loci).}
+    \caption[Minimum spanning tree generated with the goeBURST algorithm for the cgMLST profiles of 265 \textit{S. pyogenes} isolates recovered in Portugal.]{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 265 \textit{S. pyogenes} isolates recovered in Portugal [Dataset 1 \cite{friaes_supplemental_2023}]. Nodes are colored according to \ac{PFGE} cluster. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. Link distances $\geq45$ differences are labeled (from a total of 1,230 compared loci).}
     \label{fig:chap4_figureS4}
 \end{figure*}
 
@@ -214,7 +212,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS5.pdf}
-    \caption{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 265 \textit{S. pyogenes} isolates recovered in Portugal [Dataset 1 \cite{friaes_supplemental_2023}]. Nodes are colored according to SAg profile. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. Link distances $\geq45$ differences are labeled (from a total of 1,230 compared loci).}
+    \caption[Minimum spanning tree generated with the goeBURST algorithm for the cgMLST profiles of 265 \textit{S. pyogenes} isolates recovered in Portugal.]{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 265 \textit{S. pyogenes} isolates recovered in Portugal [Dataset 1 \cite{friaes_supplemental_2023}]. Nodes are colored according to SAg profile. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. Link distances $\geq45$ differences are labeled (from a total of 1,230 compared loci).}
     \label{fig:chap4_figureS5}
 \end{figure*}
 
@@ -222,7 +220,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS6.pdf}
-    \caption{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 265 \textit{S. pyogenes} isolates recovered in Portugal [Dataset 1 \cite{friaes_supplemental_2023}]. Nodes are colored according to T-type. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. Link distances $\geq45$ differences are labeled (from a total of 1,230 compared loci). NT, non-typeable.}
+    \caption[Minimum spanning tree generated with the goeBURST algorithm for the cgMLST profiles of 265 \textit{S. pyogenes} isolates recovered in Portugal.]{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 265 \textit{S. pyogenes} isolates recovered in Portugal [Dataset 1 \cite{friaes_supplemental_2023}]. Nodes are colored according to T-type. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. Link distances $\geq45$ differences are labeled (from a total of 1,230 compared loci). NT, non-typeable.}
     \label{fig:chap4_figureS6}
 \end{figure*}
 
@@ -230,7 +228,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS7.pdf}
-    \caption{Representation of the \ac{MST} groups defined at 33 allelic differences cutoff (from a total of 1,382 compared loci) for 54 \textit{emm}4 isolates recovered in Portugal [Dataset 1 \cite{friaes_supplemental_2023}]. The nodes are colored according to \ac{PFGE} cluster and the outer ring according to macrolide resistance phenotype. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. M phenotype, erythromycin-resistant and clindamycin-susceptible.}
+    \caption[Representation of the MST groups defined at 33 allelic differences cutoff (from a total of 1,382 compared loci) for 54 \textit{emm}4 isolates recovered in Portugal.]{Representation of the \ac{MST} groups defined at 33 allelic differences cutoff (from a total of 1,382 compared loci) for 54 \textit{emm}4 isolates recovered in Portugal [Dataset 1 \cite{friaes_supplemental_2023}]. The nodes are colored according to \ac{PFGE} cluster and the outer ring according to macrolide resistance phenotype. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. M phenotype, erythromycin-resistant and clindamycin-susceptible.}
     \label{fig:chap4_figureS7}
 \end{figure*}
 
@@ -238,7 +236,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS8.pdf}
-    \caption{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 22 outbreak and 30 sporadic \textit{emm}1 isolates recovered in the UK \cite{coelho_genomic_2019} [Dataset 3 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to outbreak number and the outer ring according to \textit{emm} subtype. Outbreak 2 was not included because after assembly and the exclusion criteria were applied only one representative isolate was kept, which was excluded from the outbreak by \ac{SNP} analysis \cite{coelho_genomic_2019}. Link distances are represented as the total number of allelic differences between nodes (from a total of 1,488 compared loci). All isolates belong to \ac{ST}28.}
+    \caption[Minimum spanning tree generated with the goeBURST algorithm for the cgMLST profiles of 22 outbreak and 30 sporadic \textit{emm}1 isolates recovered in the UK.]{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 22 outbreak and 30 sporadic \textit{emm}1 isolates recovered in the UK \cite{coelho_genomic_2019} [Dataset 3 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to outbreak number and the outer ring according to \textit{emm} subtype. Outbreak 2 was not included because after assembly and the exclusion criteria were applied only one representative isolate was kept, which was excluded from the outbreak by \ac{SNP} analysis \cite{coelho_genomic_2019}. Link distances are represented as the total number of allelic differences between nodes (from a total of 1,488 compared loci). All isolates belong to \ac{ST}28.}
     \label{fig:chap4_figureS8}
 \end{figure*}
 
@@ -246,7 +244,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS9.pdf}
-    \caption{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 14 outbreak and 27 sporadic \textit{emm}5 isolates recovered in the UK \cite{coelho_genomic_2019} [Dataset 3 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. Nodes are colored according to outbreak number. Link distances are represented as the total number of allelic differences between nodes (from a total of 1,485 compared loci). All isolates belong to \ac{ST}99.}
+    \caption[Minimum spanning tree generated with the goeBURST algorithm for the cgMLST profiles of 14 outbreak and 27 sporadic \textit{emm}5 isolates recovered in the UK.]{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 14 outbreak and 27 sporadic \textit{emm}5 isolates recovered in the UK \cite{coelho_genomic_2019} [Dataset 3 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. Nodes are colored according to outbreak number. Link distances are represented as the total number of allelic differences between nodes (from a total of 1,485 compared loci). All isolates belong to \ac{ST}99.}
     \label{fig:chap4_figureS9}
 \end{figure*}
 
@@ -254,7 +252,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS10.pdf}
-    \caption{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 10 outbreak and 26 sporadic \textit{emm}11 isolates recovered in the UK \cite{coelho_genomic_2019} [Dataset 3 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to outbreak number and the outer ring according to \ac{ST}. Link distances are represented as the total number of allelic differences between nodes (from a total of 1,384 compared loci).}
+    \caption[Minimum spanning tree generated with the goeBURST algorithm for the cgMLST profiles of 10 outbreak and 26 sporadic \textit{emm}11 isolates recovered in the UK.]{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 10 outbreak and 26 sporadic \textit{emm}11 isolates recovered in the UK \cite{coelho_genomic_2019} [Dataset 3 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to outbreak number and the outer ring according to \ac{ST}. Link distances are represented as the total number of allelic differences between nodes (from a total of 1,384 compared loci).}
     \label{fig:chap4_figureS10}
 \end{figure*}
 
@@ -262,7 +260,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS11.pdf}
-    \caption{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 3 outbreak and 11 sporadic \textit{emm}28 isolates recovered in the UK \cite{coelho_genomic_2019} [Dataset 3 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to outbreak number and the outer ring according to \ac{ST}. Link distances are represented as the total number of allelic differences between nodes (from a total of 1,510 compared loci).}
+    \caption[Minimum spanning tree generated with the goeBURST algorithm for the cgMLST profiles of 3 outbreak and 11 sporadic \textit{emm}28 isolates recovered in the UK.]{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 3 outbreak and 11 sporadic \textit{emm}28 isolates recovered in the UK \cite{coelho_genomic_2019} [Dataset 3 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to outbreak number and the outer ring according to \ac{ST}. Link distances are represented as the total number of allelic differences between nodes (from a total of 1,510 compared loci).}
     \label{fig:chap4_figureS11}
 \end{figure*}
 
@@ -270,7 +268,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS12.pdf}
-    \caption{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 16 outbreak and 39 sporadic \textit{emm}75 isolates recovered in the UK \cite{coelho_genomic_2019} [Dataset 3 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to outbreak number and the outer ring according to \ac{ST}. Link distances are represented as the total number of allelic differences between nodes (from a total of 1,547 compared loci).}
+    \caption[Minimum spanning tree generated with the goeBURST algorithm for the cgMLST profiles of 16 outbreak and 39 sporadic \textit{emm}75 isolates recovered in the UK.]{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 16 outbreak and 39 sporadic \textit{emm}75 isolates recovered in the UK \cite{coelho_genomic_2019} [Dataset 3 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to outbreak number and the outer ring according to \ac{ST}. Link distances are represented as the total number of allelic differences between nodes (from a total of 1,547 compared loci).}
     \label{fig:chap4_figureS12}
 \end{figure*}
 
@@ -278,7 +276,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS13.pdf}
-    \caption{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 30 outbreak and 31 sporadic \textit{emm}89 isolates recovered in the UK \cite{coelho_genomic_2019} [Dataset 3 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. Nodes are colored according to outbreak number. Link distances are represented as the total number of allelic differences between nodes (from a total of 1,392 compared loci). All isolates belong to \ac{ST}101.}
+    \caption[Minimum spanning tree generated with the goeBURST algorithm for the cgMLST profiles of 30 outbreak and 31 sporadic \textit{emm}89 isolates recovered in the UK.]{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 30 outbreak and 31 sporadic \textit{emm}89 isolates recovered in the UK \cite{coelho_genomic_2019} [Dataset 3 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. Nodes are colored according to outbreak number. Link distances are represented as the total number of allelic differences between nodes (from a total of 1,392 compared loci). All isolates belong to \ac{ST}101.}
     \label{fig:chap4_figureS13}
 \end{figure*}
 
@@ -286,7 +284,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS14.pdf}
-    \caption{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 3 outbreak and 6 sporadic \textit{emm}94 isolates recovered in the UK \cite{coelho_genomic_2019} [Dataset 3 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. Nodes are colored according to outbreak number. Link distances are represented as the total number of allelic differences between nodes (from a total of 1,506 compared loci). All isolates belong to \ac{ST}89.}
+    \caption[Minimum spanning tree generated with the goeBURST algorithm for the cgMLST profiles of 3 outbreak and 6 sporadic \textit{emm}94 isolates recovered in the UK.]{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 3 outbreak and 6 sporadic \textit{emm}94 isolates recovered in the UK \cite{coelho_genomic_2019} [Dataset 3 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. Nodes are colored according to outbreak number. Link distances are represented as the total number of allelic differences between nodes (from a total of 1,506 compared loci). All isolates belong to \ac{ST}89.}
     \label{fig:chap4_figureS14}
 \end{figure*}
 
@@ -294,7 +292,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS15.pdf}
-    \caption{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 201 \textit{emm}89 isolates [Dataset 5 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to ST and the outer ring according to the variant of the \textit{nga} promoter (P\textit{nga}). A total of 1,279 loci were compared.}
+    \caption[Minimum spanning tree generated with the goeBURST algorithm for the cgMLST profiles of 201 \textit{emm}89 isolates.]{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 201 \textit{emm}89 isolates [Dataset 5 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to ST and the outer ring according to the variant of the \textit{nga} promoter (P\textit{nga}). A total of 1,279 loci were compared.}
     \label{fig:chap4_figureS15}
 \end{figure*}
 
@@ -302,7 +300,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS16.pdf}
-    \caption{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 66 \textit{emm}89 isolated in Portugal [Dataset 1 and Dataset 5 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to \ac{PFGE} cluster and the outer ring according to the variant of the \textit{nga} promoter (P\textit{nga}). A total of 1,388 loci were compared.}
+    \caption[Minimum spanning tree generated with the goeBURST algorithm for the cgMLST profiles of 66 \textit{emm}89 isolated in Portugal.]{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 66 \textit{emm}89 isolated in Portugal [Dataset 1 and Dataset 5 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to \ac{PFGE} cluster and the outer ring according to the variant of the \textit{nga} promoter (P\textit{nga}). A total of 1,388 loci were compared.}
     \label{fig:chap4_figureS16}
 \end{figure*}
 
@@ -310,7 +308,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS17.pdf}
-    \caption{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 66 \textit{emm}89 isolated in Portugal [Dataset 1 and Dataset 5 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to SAg gene profile and the outer ring according to the variant of the \textit{nga} promoter (P\textit{nga}). A total of 1,388 loci were compared.}
+    \caption[Minimum spanning tree generated with the goeBURST algorithm for the cgMLST profiles of 66 \textit{emm}89 isolated in Portugal.]{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 66 \textit{emm}89 isolated in Portugal [Dataset 1 and Dataset 5 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to SAg gene profile and the outer ring according to the variant of the \textit{nga} promoter (P\textit{nga}). A total of 1,388 loci were compared.}
     \label{fig:chap4_figureS17}
 \end{figure*}
 
@@ -318,7 +316,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \begin{figure*}[h!]
     \centering
     \includegraphics[angle=0,width=\textwidth]{figures/chapter 4/FigureS18.pdf}
-    \caption{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 66 \textit{emm}89 isolated in Portugal [Dataset 1 and Dataset 5 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to T-type and the outer ring according to the variant of the \textit{nga} promoter (P\textit{nga}). A total of 1,388 loci were compared.}
+    \caption[Minimum spanning tree generated with the goeBURST algorithm for the cgMLST profiles of 66 \textit{emm}89 isolated in Portugal.]{Minimum spanning tree generated with the goeBURST algorithm for the \ac{cgMLST} profiles of 66 \textit{emm}89 isolated in Portugal [Dataset 1 and Dataset 5 \cite{friaes_supplemental_2023}]. The size of each node is proportional to the number of isolates with that particular \ac{cgMLST} profile on a logarithmic scale. The nodes are colored according to T-type and the outer ring according to the variant of the \textit{nga} promoter (P\textit{nga}). A total of 1,388 loci were compared.}
     \label{fig:chap4_figureS18}
 \end{figure*}
 
