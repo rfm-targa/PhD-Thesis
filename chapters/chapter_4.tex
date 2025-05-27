@@ -5,13 +5,13 @@ This chapter is a reproduction of the following publication:
 
 A. Friães, R. Mamede, M. Ferreira, J. Melo-Cristino, M. Ramirez, Annotated Whole-Genome Multilocus Sequence Typing Schema for Scalable High-Resolution Typing of \textit{Streptococcus pyogenes}, Journal of Clinical Microbiology, Volume 60, Issue 6, May 2022. DOI: \url{https://doi.org/10.1128/jcm.00315-22}
 
-The supplementary information referred to throughout the text can be consulted in this chapter before the reference section. 
+The supplementary material referred to throughout the text can be consulted in the last section of this chapter, \textbf{\autoref{sec:ch4_supplemental_material}}.
 
-Schemas are the centerpiece of \ac{wg/cgMLST}. A \ac{wg/cgMLST} schema captures the diversity of a set of loci, generally identified in a single bacterial species, and, through allele calling, allows determining the allelic profiles of strains of interest. Creating a schema for \ac{wg/cgMLST} is not necessarily complex. Creating a well-curated \ac{wg/cgMLST} schema that captures the diversity of thousands of loci of a bacterial species is a different matter altogether. By well-curated, it means that all the loci or nearly all loci in the schema are \textit{bona fide} loci, not spurious loci, such as frameshifted, truncated, or gene fusions, which can be common issues plaguing \ac{wg/cgMLST} schemas. Limiting the set of loci included in the schemas to the core loci to define a \ac{cgMLST} schema is a way to minimize these issues. In theory, \ac{cgMLST} schemas should include loci present in all or nearly all strains of a dataset representative of the diversity of a species, corresponding to loci with more conserved sequences due to their important functions. Although \ac{cgMLST} schemas may provide robust results, in many cases, they do not capture a considerable fraction of the diversity of bacterial species, limiting their applicability, such as for high-resolution typing of closely related strains in outbreak contexts. \ac{wgMLST} schemas incorporate loci from the most variable fraction of the genome, usually termed the accessory genome, and provide greater resolution than \ac{cgMLST} schemas. However, generating a \ac{wgMLST} schema is a laborious process, as the dynamic nature of the accessory genome may hinder the identification of bona fide alleles and blur loci definitions.
+Schemas are the centerpiece of \ac{wg/cgMLST}. A \ac{wg/cgMLST} schema captures the diversity of a set of loci, generally identified in a single bacterial species, and, through allele calling, allows the determination of the allelic profiles of strains of interest. Creating a schema for \ac{wg/cgMLST} is not necessarily complex. Creating a well-curated \ac{wg/cgMLST} schema that captures the diversity of thousands of loci of a bacterial species is a different matter altogether. Well-curated means that all loci or nearly all loci in the schema are \textit{bona fide} loci, not spurious loci, such as frameshifted, truncated, or gene fusions, which can be common issues plaguing the \ac{wg/cgMLST} schemas. Limiting the set of loci included in the schemas to the core loci to define a \ac{cgMLST} schema is a way to minimize these problems. In theory, \ac{cgMLST} schemas should include loci present in all or nearly all strains of a dataset representative of the diversity of a species, corresponding to loci with more conserved sequences due to their important functions. Although \ac{cgMLST} schemas may provide robust results, in many cases they do not capture a considerable fraction of the diversity of bacterial species, limiting their applicability, such as for high-resolution typing of closely related strains in outbreak contexts. \ac{wgMLST} schemas incorporate loci from the most variable fraction of the genome, usually termed the accessory genome, and provide greater resolution than \ac{cgMLST} schemas. However, creating a \ac{wgMLST} schema is a laborious process, as incomplete genome assemblies, errors derived from genome misassembly, and the dynamic nature of the accessory genome can hinder identification of \textit{bona fide} alleles and blur loci definitions.
 
-This chapter describes the creation of a \ac{wgMLST} schema for high-resolution typing of \textit{Streptococcus pyogenes}. Following schema creation with chewBBACA based on a set of high-quality complete genomes, the schema was populated with the alleles identified in several datasets that represent the known diversity of \textit{S. pyogenes}. The schema was then extensively annotated through automatic methods, followed by curation by the first first co-author, an expert in the biology of \textit{S. pyogenes}, to validate the annotations and identify spurious loci. The schema was refined to remove or substitute spurious loci by valid alleles. The refinement resulted in a final \ac{wg/cgMLST} schema with 3,044 loci, which captures far more of the diversity of \textit{S. pyogenes} than the computed \ac{cgMLST} schemas, which include only between 763 and 1321 loci. Using a \ac{wgMLST} schema instead of hard-defined \ac{cgMLST} schemas allows adjusting \ac{cgMLST} analyses dynamically for each dataset, identifying more loci than conventional cgMLST and achieving performance comparable to \ac{SNP}-based methods.
+This chapter describes the creation of a \ac{wgMLST} schema for high-resolution typing of \textit{Streptococcus pyogenes}. Following the creation of the schema based on a set of high-quality complete genomes with an early version of chewBBACA 3, presented in \textbf{\autoref{ch:paper1}}, the schema was populated with alleles identified in several datasets representing the known diversity of \textit{S. pyogenes}. The schema was then extensively annotated through automatic methods, followed by curation by the first first co-author, an expert in the biology of \textit{S. pyogenes}, to validate the annotations and identify spurious loci. The schema was refined to remove or substitute spurious loci by valid alleles. The refinement resulted in a final \ac{wg/cgMLST} schema with 3,044 loci, which captures far more of the diversity of \textit{S. pyogenes} than the computed \ac{cgMLST} schemas, which include only between 763 and 1321 loci. Using a \ac{wgMLST} schema instead of hard-defined \ac{cgMLST} schemas allows adjusting \ac{cgMLST} analyses dynamically for each dataset, identifying more loci than conventional \ac{cgMLST} and achieving performance comparable to \ac{SNP}-based methods.
 
-I participated in all steps related to schema development and dataset analyses to evaluate schema performance. Throughout the schema development process, I was responsible for selecting the genomes used for schema creation, annotating the schema loci based on multiple sources, and refining the schema based on the suggestions of the other first co-author. When necessary, I implemented custom scripts to annotate, refine, and evaluate schema performance. 
+I participated in all steps related to schema development and dataset analyses to evaluate schema performance. Throughout the schema development process, I was responsible for selecting the genomes used for schema creation, annotating the schema loci based on multiple sources, and refining the schema based on the suggestions of the first first co-author. When necessary, I implemented custom scripts to annotate, refine, and evaluate schema performance.
 
 \newpage 
 
@@ -30,11 +30,11 @@ $^1$Instituto de Microbiologia, Instituto de Medicina Molecular, Faculdade de Me
 
 $^*$Contributed equally
 
-\section{Abstract}
+\section{Abstract} \label{sec:ch4_abstract}
 
 \textit{Streptococcus pyogenes} is a major human pathogen with high genetic diversity, largely created by recombination and horizontal gene transfer, making it difﬁcult to use \ac{SNP}-based genome-wide analyses for surveillance. Using a Gene-by-Gene approach on 208 complete genomes of \textit{S. pyogenes}, a novel \ac{wgMLST} schema was developed, comprising 3,044 target loci. The schema was used for \ac{cgMLST} analyses of previously published data sets and 265 newly sequenced draft genomes with other molecular and phenotypic typing data. Clustering based on \ac{cgMLST} data supported the genetic heterogeneity of many \textit{emm} types and correlated poorly with \ac{PFGE} macrorestriction proﬁling, superantigen gene proﬁling, and \ac{MLST} sequence type, highlighting the limitations of older typing methods. While 763 loci were present in all isolates of a data set representative of \textit{S. pyogenes} genetic diversity, the proposed schema allows scalable \ac{cgMLST} analysis, which can include more loci for an increased resolution when typing closely related isolates. The \ac{cgMLST} and PopPUNK clusters were broadly consistent in this diverse population. The \ac{cgMLST} analyses presented results comparable to those of \ac{SNP}-based methods in the identiﬁcation of two recently emerged sublineages of \textit{emm1} and \textit{emm89} and the clariﬁcation of the genetic relatedness among isolates recovered in outbreak contexts. The schema was thoroughly annotated and made publicly available on the \ac{Chewie-NS} online platform (\url{https://chewbbaca.online/species/1/schemas/1}), providing a framework for high-resolution typing and analyzing the genetic variability of loci of particular biological interest.
 
-\section{Introduction}
+\section{Introduction} \label{sec:ch4_introduction}
 
 \textit{Streptococcus pyogenes} (\ac{GAS}) remains a signiﬁcant cause of global morbidity and ranks among the top 10 infectious causes of death \cite{carapetis_global_2005}. In 2018, the \ac{WHO} highlighted the importance of developing a \ac{GAS} vaccine and set out priority activities to reach this goal, including a better characterization of the epidemiology of \ac{GAS} infections and the identiﬁcation of appropriate candidate antigens \cite{vekemans_path_2019}.
 
@@ -48,7 +48,7 @@ Most genome-wide analyses performed on \ac{GAS} have been based on the compariso
 
 The aims of this study were to deﬁne a publicly available annotated \ac{wgMLST} schema for \textit{S. pyogenes} and evaluate its suitability for high-resolution typing and documenting the variability of loci encoding proteins of biological relevance.
 
-\section{Materials and Methods}
+\section{Materials and Methods} \label{sec:ch4_materials_and_methods}
 
 \textbf{Bacterial strains and data sets}. A collection of 265 nonduplicate \ac{GAS} strains isolated from pharyngitis, skin and soft tissue infections, and normally sterile sites in Portugal between 2001 and 2009 was selected for \ac{HTS} and comparison of \ac{cgMLST} with other typing methods (see supplemental Data Set 1 in reference \cite{friaes_supplemental_2023}). These isolates were previously characterized regarding \textit{emm} type, T type, \ac{PFGE} proﬁle, SAg gene proﬁle, and antimicrobial resistance \cite{friaes_superantigen_2013, friaes_group_2012, pato_streptococcus_2018, friaes_changes_2013, noauthor_emstreptococcus_nodate} and represent four \textit{emm} types: \textit{emm}1, \textit{emm}3, \textit{emm}4 (including erythromycin-resistant and -susceptible isolates), and \textit{emm}89 (including isolates carrying P\textit{nga}-1, P\textit{nga}-2, and P\textit{nga}-3) \cite{friaes_emergence_2015}.
 
@@ -82,7 +82,7 @@ The schema was uploaded to \ac{Chewie-NS} \cite{mamede_chewie_2021}, where a mor
 
 \input{tables/chapter_4/table1}
 
-\section{Results}
+\section{Results} \label{sec:ch4_results}
 
 \textbf{Development of the wgMLST schema for \textit{S. pyogenes}}. The ﬁnal annotated \ac{wgMLST} schema comprises 3,044 loci with 371,549 alleles. Out of these, 1,096 (36\%) loci presented low variability, presenting 1 to 19 \ac{DNA} alleles (see Fig. \ref{fig:chap4_figureS1} in the supplemental material). These correspond essentially to genes that were identiﬁed in a minority of assemblies, mostly associated with prophages and other mobile genetic elements. The exception is \textit{sagA}, encoding the streptolysin S precursor peptide, which presented only 13 alleles despite being ubiquitous among \textit{S. pyogenes} isolates. The short length of this locus (162 \ac{bp}) may be partly responsible for the limited number of alleles.
 
@@ -146,7 +146,7 @@ The overall congruence between \ac{ST}s and \ac{MST} groups linked by up to 50 d
 
 \textbf{Performance of the wgMLST schema in the identiﬁcation of recently emerged lineages}. We tested if the proposed \ac{wgMLST} schema has enough discriminatory power to identify two recently emerged intra-\textit{emm} lineages that were originally identiﬁed by whole-genome \ac{SNP} analysis, namely, $M1_{UK}$ and \textit{emm}89 clade 3 \cite{turner_emergence_2015, zhu_molecular_2015, lynskey_emergence_2019}. Allele calling was performed for the 135 assemblies from noninvasive \textit{emm}1 isolates \cite{lynskey_emergence_2019} together with the complete genome of strain MGAS5005, a reference representative of the $M1_{global}$ lineage (see Data Set 4 in \cite{friaes_supplemental_2023}). The graph in Fig. \ref{fig:chap4_figure5} represents the resulting \ac{MST} with all links of up to 19 differences depicted. All $M1_{UK}$ isolates were tightly clustered, together with an intermediate isolate ($M1_{inter}$) carrying 23 of the 27 \ac{SNP}s characteristic of the $M1_{UK}$ lineage \cite{lynskey_emergence_2019}. The \ac{MST} links within this cluster ranged between 0 and 13 differences, while the closest links to the $M1_{inter}$ cluster (13 \ac{SNP}s) and an $M1_{global}$ isolate were 20 and 31 differences, respectively. $M1_{global}$ isolates presented higher genomic diversity, with \ac{MST} links of up to 49 differences. Allele calling was performed for all \textit{emm}89 assemblies included in the four data sets described above and all the complete \textit{emm}89 genomes used to create the schema (\textit{n} = 201) (see Data Set 5 in \cite{friaes_supplemental_2023}). In addition, the P\textit{nga} variant was determined for all isolates. The absence of the \textit{hasA} gene of the capsule locus was conﬁrmed in all P\textit{nga}-3 isolates, while all other isolates carried this gene, except for two ST568 isolates that have an internal nonsense codon in \textit{hasA}. The graph depicting all links of up to 55 differences (Fig. \ref{fig:chap4_figure6}) showed limited diversity in the isolates carrying P\textit{nga}-3, which clustered closely, with \ac{MST} links with 0 to 27 differences, while the shortest link to a P\textit{nga}-2 isolate was 57 differences. The P\textit{nga}-2 and, especially, P\textit{nga}-1 isolates were more diverse, presenting fewer links with up to 55 differences and comprising multiple sublineages associated with different \ac{ST}s (Fig. \ref{fig:chap4_figure6}; Fig. \ref{fig:chap4_figureS15}). Both the wider geographic range and collection time span may contribute to this higher diversity. As previously reported \cite{friaes_emergence_2015}, \ac{MLST} was not suitable for discriminating P\textit{nga}-3 isolates from those carrying P\textit{nga}-2 since ST101 was prevalent among both lineages (Fig. \ref{fig:chap4_figureS15}). Analysis of the \textit{emm}89 isolates from Data Set 1 showed that P\textit{nga}-3 isolates and most P\textit{nga}-2 isolates were also grouped into the same \ac{PFGE} cluster, and some of them shared the same SAg proﬁle, while the T serotype B3264 was ubiquitous, except for the single P\textit{nga}-1 isolate (T11) and one P\textit{nga}-3 isolate that was nontypeable (Fig. \ref{fig:chap4_figureS16} to \ref{fig:chap4_figureS18}). \ac{PopPUNK} clustering also could not discriminate P\textit{nga}-3 isolates, which were clustered with isolates carrying P\textit{nga}-1 and P\textit{nga}-2 in phylogroup 3 (see Data Set 5 in \cite{friaes_supplemental_2023}).
 
-\section{Discussion}
+\section{Discussion} \label{sec:ch4_discussion}
 
 The reduced costs of \ac{HTS} have facilitated a wider application of whole-genome data to the epidemiological surveillance of multiple pathogens. This leads to a requirement for standardized analysis pipelines producing reproducible and portable results that can be easily compared across laboratories and with those of previously used typing methods \cite{sabat_overview_2013}. Here, we propose a \ac{wgMLST} schema for \textit{S. pyogenes}, consisting of 3,044 loci. Hard-deﬁned \ac{cgMLST} schemas comprising the subsets of loci present in 95\% (1,321 loci), 99\% (1,204 loci), and 100\% (763 loci) of the assemblies of a collection representing the genetic diversity of \textit{S. pyogenes} \cite{davies_atlas_2019} are also presented.
 
@@ -168,15 +168,15 @@ However, the use of a \ac{wgMLST} schema from which the \ac{cgMLST} loci are sel
 
 The close integration with the chewBBACA suite \cite{silva_chewbbaca_2018} facilitates its use in surveillance and epidemiological studies and the maintenance of a common nomenclature across different studies. By virtue of the comprehensive annotation, the database can be used to obtain relevant data for basic research, such as the variability of genes of interest (virulence factors, antimicrobial resistance genes, candidate vaccine antigens, and transcriptional regulators, etc.) \cite{davies_atlas_2019, beres_integrative_2022} in addition to its use for typing purposes.
 
-\section{Acknowledgments}
+\section{Acknowledgments} \label{sec:ch4_acknowledgments}
 
 R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was received from the ONEIDA project (LISBOA-01-0145-FEDER-016417), cofunded by the FEEI (Fundos Europeus Estruturais e de Investimento) from the Programa Operacional Regional de Lisboa, Portugal, 2020 (POR Lisboa 2020), and by national funds from the \ac{FCT} and the LISBOA-01-0145-FEDER-007391 project, cofunded by FEDER through POR Lisboa 2020 and the \ac{FCT}.
 
 \newpage
 
-\section{Supplemental Material}
+\section{Supplemental Material} \label{sec:ch4_supplemental_material}
 
-\subsection{Supplemental Figures} \label{ssec:supplemental_material_figures}
+\subsection{Supplemental Figures} \label{ssec:ch4_supplemental_figures}
 
 \begin{figure*}[h!]
     \centering
@@ -322,7 +322,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 
 \newpage
 
-\subsection{Supplemental Tables} \label{ssec:supplemental_material_tables}
+\subsection{Supplemental Tables} \label{ssec:ch4_supplemental_tables}
 
 \noindent \textbf{Table S1} – Complete genomes used for schema creation. See separate \textit{xlsx} file \cite{friaes_supplemental_2023}.
 
@@ -364,7 +364,7 @@ R.M. was supported by the \ac{FCT} (grant 2020.08493.BD). Partial support was re
 \vspace*{\fill}
 \end{landscape}
 
-\subsection{Other Supplemental Material} \label{ssec:supplemental_material_other}
+\subsection{Other Supplemental Material} \label{ssec:ch4_supplemental_other}
 
 \noindent The following supplemental files are available on Zenodo (\cite{friaes_supplemental_2023}).
 
