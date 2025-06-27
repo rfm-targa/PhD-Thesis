@@ -36,7 +36,6 @@
   \fancyhead{}
   \renewcommand{\headrulewidth}{0pt}
 }
-\usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage[nottoc]{tocbibind}
 \usepackage[backend=biber,style=numeric-comp,maxcitenames=1,autocite=inline,natbib=true,sorting=none]{biblatex}
@@ -80,7 +79,6 @@
 \usepackage{adjustbox}
 \usepackage{booktabs}
 \usepackage{multirow}
-\hypersetup{hidelinks}
 \usepackage{longtable}
 \usepackage{acronym} 
 \usepackage{amssymb} % for \geq and other math symbols
@@ -88,6 +86,8 @@
 \usepackage[symbol]{footmisc}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 \usepackage{threeparttable}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
 
 % Change \autoref behavior to ensure first letter is in uppercase
 \renewcommand{\figureautorefname}{Figure}
@@ -149,73 +149,84 @@
 \end{center} 
 \begin{flushright}- Carlo Rovelli, Reality Is Not What It Seems: The Journey to Quantum Gravity\end{flushright}
 \clearpage \thispagestyle{empty}\mbox{}\clearpage
+\cleardoublepage
 
 %-----------------------------------------------------------------
 % Acknowledgements
 %------------------------------------------------------------------
 \newpage
 \thispagestyle{plain}
-\addcontentsline{toc}{chapter}{Acknowledgements}
 \chapter*{Acknowledgements}
 \input{chapters/acknowledgements.tex}
+\addcontentsline{toc}{chapter}{Acknowledgements}
 \clearpage \thispagestyle{empty}\mbox{}\clearpage
+\cleardoublepage
 
 %-----------------------------------------------------------------
 % Summary
 %------------------------------------------------------------------
 \newpage
 \thispagestyle{plain}
-\addcontentsline{toc}{chapter}{Summary}
 \chapter*{Summary}
 \input{chapters/abstract.tex}
+\addcontentsline{toc}{chapter}{Summary}
 
-\keywords{Public health, Bacterial genomics, Pathogen surveillance, Bacterial typing, wg/cgMLST}
+\keywords{Public health, Pathogen surveillance, Bacterial genomics, Bacterial typing, wg/cgMLST}
 \clearpage \thispagestyle{empty}\mbox{}\clearpage
+\cleardoublepage
 
 %-----------------------------------------------------------------
 % Resumo
 %------------------------------------------------------------------
 \newpage
 \thispagestyle{plain}
-\addcontentsline{toc}{chapter}{Resumo}
 \chapter*{Resumo}
 \input{chapters/resumo.tex}
+\addcontentsline{toc}{chapter}{Resumo}
 
-\keywords{Saúde pública, Genómica bacteriana, Vigilância de patogéneos, Tipagem bacteriana, wg/cgMLST}
+\keywords{Saúde pública, Vigilância de patogéneos, Genómica bacteriana, Tipagem bacteriana, wg/cgMLST}
 \clearpage \thispagestyle{empty}\mbox{}\clearpage
+\cleardoublepage
 
 %-----------------------------------------------------------------
 % Thesis Outline
 %------------------------------------------------------------------
 \newpage
 \thispagestyle{plain}
-\addcontentsline{toc}{chapter}{Thesis Outline}
 \chapter*{Thesis Outline}
 \input{chapters/thesis_outline}
+\addcontentsline{toc}{chapter}{Thesis Outline}
 \clearpage \thispagestyle{empty}\mbox{}\clearpage
+\cleardoublepage
 
 %-----------------------------------------------------------------
 % Abbreviations
 %------------------------------------------------------------------
 \newpage
 \thispagestyle{plain}
-\addcontentsline{toc}{chapter}{Abbreviation}
-\chapter*{Abbreviation}
+\chapter*{Abbreviations}
 \input{chapters/acronyms}
+\addcontentsline{toc}{chapter}{Abbreviations}
 \clearpage \thispagestyle{empty}\mbox{}\clearpage
+\cleardoublepage
 
 %-----------------------------------------------------------------
 % Table of Contents
 %------------------------------------------------------------------
 \newpage
+
 \thispagestyle{plain}
-\addcontentsline{toc}{chapter}{Table of Contents}
 \renewcommand{\contentsname}{Table of Contents}
+\pdfbookmark{\contentsname}{toc}
 \tableofcontents
+
 \cleardoublepage
+
 \thispagestyle{plain}
 \listoftables
+
 \cleardoublepage
+
 \thispagestyle{plain}
 \listoffigures
 
@@ -274,13 +285,17 @@
 %-----------------------------------------------------------------
 % References
 %-----------------------------------------------------------------
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
 \printbibliography
 
 %-----------------------------------------------------------------
 % Appendix
 %-----------------------------------------------------------------
 \newpage
-\chapter{Appendix}
+\chapter*{Appendix}
+\addcontentsline{toc}{chapter}{Appendix}
 \cleardoublepage
 \includepdf[pages={1-}]{resources/papers/mamede2021.pdf}
 \includepdf[pages={1-}]{resources/papers/friaes2022.pdf}
