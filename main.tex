@@ -110,12 +110,14 @@
 %-----------------------------------------------------------------
 % Cover
 %------------------------------------------------------------------
+\pdfbookmark[0]{Title Page}{titlepage}
 \input{titlepage}
 \clearpage \thispagestyle{empty}\mbox{}\clearpage
 
 %-----------------------------------------------------------------
 % Folha de rosto
 %------------------------------------------------------------------
+\pdfbookmark[0]{Cover Page}{coverpage}
 \input{coverpage}
 \clearpage \thispagestyle{empty}\mbox{}\clearpage
 
@@ -124,6 +126,7 @@
 %------------------------------------------------------------------
 \newpage
 \thispagestyle{empty}
+\pdfbookmark[0]{Disclaimer}{disclaimer}
 \vspace*{\fill}
 \begin{center}
     \vspace*{\fill}
@@ -133,16 +136,17 @@
     
     \begingroup
         \fontsize{14pt}{12pt}\selectfont
-        \textbf{A impressão desta tese foi aprovada pelo Conselho Científico da Faculdade de Medicina de Lisboa em reunião de DIA de MÊS de ANO.}
+        %\textbf{A impressão desta tese foi aprovada pelo Conselho Científico da Faculdade de Medicina da Universidade de Lisboa em reunião de DIA de MÊS de ANO.}
     \endgroup
 \end{center}
 \blankpage
 
 %-----------------------------------------------------------------
-% Dedication
+% Quote
 %------------------------------------------------------------------
 \newpage
 \thispagestyle{empty}
+\pdfbookmark[0]{Quote}{quote}
 \vspace*{3cm}
 \begin{center}
 \emph{"We are all in the depths of a cave, chained by our ignorance, by our prejudices, and our weak senses reveal to us only shadows. If we try to see further, we are confused; we are unaccustomed. But we try. This is science."} \\
