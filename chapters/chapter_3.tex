@@ -57,7 +57,7 @@ The \ac{UI} for \ac{Chewie-NS} was built with the JavaScript frameworks React (v
 \newpage
 \begin{landscape}
 \vspace*{\fill}
-\begin{figure*}[h!]
+\begin{figure*}[!ht]
     \centering
     \includegraphics[width=20cm]{figures/chapter 3/Figure1.pdf}
     \caption[The Chewie-NS service: global overview of the technologies used and API connectivity.]{The Chewie-NS service: global overview of the technologies used and API connectivity.}
@@ -76,7 +76,7 @@ The \ac{UI} for \ac{Chewie-NS} was built with the JavaScript frameworks React (v
 
 \textit{Schemas overview}. A table summarizes the species and number of schemas available for each species in \ac{Chewie-NS}. Selecting a species leads to another table (\ref{fig:chap3_figure2}) with a list of relevant information about each available schema, namely the schema internal identifier, the user provided schema name, the username of the creator, the number of loci in the schema, the number of alleles, the software and version used to create the schema, the date of creation, the date of the last modification, the BLAST \cite{altschul_basic_1990} score ratio selected, the translation table used, the minimum locus length and size threshold. In the table, there is a link to download the compressed file of the schema and the training file used to create it, both necessary to use the schema locally with the chewBBACA suite. Each table entry has also a link to a page containing more details about the schema. Below this table, an interactive bar chart displays the number of alleles per locus for each schema. The user can zoom in on the chart to obtain a better view of a given set of loci and can click on a bar to go to a page with more details on that particular locus.
 
-\begin{figure*}[h!]
+\begin{figure*}[!ht]
     \centering
     \includegraphics[width=\textwidth]{figures/chapter 3/Figure2.pdf}
     \caption[The schemas overview page of Chewie-NS.]{The schemas overview page of Chewie-NS.}
@@ -87,7 +87,7 @@ The \ac{UI} for \ac{Chewie-NS} was built with the JavaScript frameworks React (v
 
 \textit{Locus details}. Already in the schema evaluation and annotation page is shown most of the information of each locus. This includes the internal locus identification and label, the automated annotation created by chewBBACA including a link to the relevant UniProt \cite{uniprot_consortium_uniprot_2019} page, a user locus name and user custom annotation (supporting markdown syntax), number of alleles and allele size information. The possibility of schema creators offering their own annotation allows for domain-specific information to be added to the schema, including potentially richer complementary data and links to relevant external resources. Two charts are offered, one summarizing the size distribution of the alleles (frequency of binned sizes) and the other representing the sizes of each allele. Direct links to perform \ac{BLAST} searches using allele 1 of that locus (\ac{BLASTn} and \ac{BLASTx}) are available at the bottom of the page, allowing the user to check for similarities that could offer further insights into the origin or likely function of the protein potentially encoded by the locus. A multi-fasta file containing the alleles of the locus can be downloaded by the users from this page. On a different page, a simple query feature allows finding exact matches to specific sequences stored in any of \ac{Chewie-NS}’s databases, returning the loci and schemas where the sequence is found.
 
-\begin{figure*}[h!]
+\begin{figure*}[!ht]
     \centering
     \includegraphics[angle=0,height=0.80\textheight]{figures/chapter 3/Figure3.pdf}
     \caption[Summary charts displaying relevant information on a given schema.]{Summary charts displaying relevant information on a given schema. \textbf{(A)} Distribution of loci by number of alleles. \textbf{(B)} Distribution of loci by allele mode size. \textbf{(C)} Representation of summary statistics (minimum allele size in blue, maximum allele size in orange and median allele size in green) for each locus. \textbf{(D)} Box plots of loci size distribution; the loci in the x-axis are ordered by locus ID.}\label{fig:chap3_figure3}
@@ -101,7 +101,7 @@ In order to facilitate familiarization of the interaction between chewBBACA and 
 
 For reproducibility and traceability purposes, a feature to retrieve database snapshots at specific dates is available, allowing a user to be able to recover the exact schema, as it was available on a given date. Full documentation of the schemas allows for traceability, which is critical in public health applications. These various options will continue to allow data privacy, while striving for a common nomenclature. The detailed parameterization associated with each schema created with chewBBACA and the consistency checks implemented in \ac{Chewie-NS} mean that no human curation is necessary after the schema creation step, contributing to the rapid update of the database and exchange of information. However, although \ac{Chewie-NS} can be used to store and retrieve information of schemas not created with chewBBACA, it does not currently automatically guarantee the consistency of newly submitted alleles since each allele-calling algorithm will have specific parametrization requirements. Nevertheless, these can be implemented in the future as other allele-calling algorithms make use of the \ac{Chewie-NS} platform.
 
-\begin{figure*}[h!]
+\begin{figure*}[!ht]
     \centering
     \includegraphics[width=\textwidth]{figures/chapter 3/Figure4.pdf}
     \caption[Schema loci table: search functionality.]{Schema loci table: search functionality. The figure presents the results of filtering for \textit{speB}, \textit{speI}, \textit{speJ}, \textit{speQ} and \textit{speR} in the \textit{user locus name} field of the \textit{Streptococcus pyogenes} schema 1. Note that the user provided annotations complement and correct some of the annotations retrieved from UniProt.}
