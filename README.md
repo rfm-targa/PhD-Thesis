@@ -3,7 +3,6 @@
 Rafael Mamede's PhD Thesis
 
 Supervised by Prof. Dr. Mário Ramirez
-Co-supervised by Dr. Simon Tausch
 
 Co-supervised by Dr. Simon Tausch
 
